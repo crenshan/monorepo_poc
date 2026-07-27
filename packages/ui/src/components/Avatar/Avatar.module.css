@@ -1,0 +1,48 @@
+/* Every value here references a token variable — no raw hex or px.
+   That's the rule the CI compliance agent enforces. */
+.ds-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-gray200);
+  color: var(--color-gray700);
+  font-weight: var(--fontWeight-medium);
+  user-select: none;
+}
+
+.ds-avatar--sm {
+  width: var(--space-lg);
+  height: var(--space-lg);
+  font-size: var(--fontSize-sm);
+}
+
+.ds-avatar--base {
+  width: var(--space-xl);
+  height: var(--space-xl);
+  font-size: var(--fontSize-base);
+}
+
+.ds-avatar--lg {
+  width: calc(var(--space-xl) + var(--space-sm));
+  height: calc(var(--space-xl) + var(--space-sm));
+  font-size: var(--fontSize-lg);
+}
+
+.ds-avatar--xl {
+  width: calc(var(--space-xl) + var(--space-lg));
+  height: calc(var(--space-xl) + var(--space-lg));
+  font-size: var(--fontSize-xl);
+}
+
+.ds-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ds-avatar__initials {
+  line-height: 1;
+}

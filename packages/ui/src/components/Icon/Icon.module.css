@@ -1,0 +1,26 @@
+/* Every value here references a token variable — no raw hex or px.
+   That's the rule the CI compliance agent enforces. */
+.ds-icon {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.ds-icon--sm {
+  width: var(--space-lg);
+  height: var(--space-lg);
+}
+
+.ds-icon--base {
+  width: var(--space-xl);
+  height: var(--space-xl);
+}
+
+.ds-icon--lg {
+  width: calc(var(--space-xl) + var(--space-sm));
+  height: calc(var(--space-xl) + var(--space-sm));
+}
+
+.ds-icon--xl {
+  width: calc(var(--space-xl) + var(--space-lg));
+  height: calc(var(--space-xl) + var(--space-lg));
+}

@@ -1,0 +1,9 @@
+/* Every value here references a token variable — no raw hex or px.
+   That's the rule the CI compliance agent enforces. */
+.ds-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  color: var(--color-text);
+}

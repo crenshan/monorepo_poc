@@ -1,0 +1,18 @@
+.login-view {
+  display: flex;
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+.login-view__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 320px;
+  max-width: 100%;
+  text-align: left;
+}
+
+.login-view__form h2 {
+  margin: 0 0 8px;
+}
