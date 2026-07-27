@@ -1,0 +1,37 @@
+/* Every value here references a token variable — no raw hex or px.
+   That's the rule the CI compliance agent enforces. */
+.ds-table__wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ds-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fontSize-base);
+  color: var(--color-text);
+}
+
+.ds-table__headerCell {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--fontSize-sm);
+  font-weight: var(--fontWeight-medium);
+  color: var(--color-textMuted);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ds-table__row {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ds-table__row:last-child {
+  border-bottom: none;
+}
+
+.ds-table__cell {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  vertical-align: middle;
+}

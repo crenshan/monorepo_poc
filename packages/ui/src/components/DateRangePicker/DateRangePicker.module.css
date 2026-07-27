@@ -1,0 +1,33 @@
+/* Every value here references a token variable — no raw hex or px.
+   That's the rule the CI compliance agent enforces. */
+.ds-dateRange {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.ds-dateRange__legend {
+  padding: 0;
+  font-size: var(--fontSize-sm);
+  font-weight: var(--fontWeight-medium);
+  color: var(--color-text);
+}
+
+.ds-dateRange__fields {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-sm);
+}
+
+.ds-dateRange__separator {
+  padding-bottom: var(--space-sm);
+  color: var(--color-textMuted);
+}
+
+.ds-dateRange__error {
+  font-size: var(--fontSize-sm);
+  color: var(--color-danger);
+}

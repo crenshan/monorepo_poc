@@ -55,6 +55,12 @@ test('Select calls onChange when a new option is chosen', () => {
   expect(screen.getByRole('combobox')).toHaveValue('ca')
 })
 
+test('Select keeps the accessible name when the label is visually hidden', () => {
+  render(<Select label={testLabel} options={options} hideLabel />)
+
+  expect(screen.getByLabelText(testLabel)).toBe(screen.getByRole('combobox'))
+})
+
 test('Select shows an error message and marks the control invalid', () => {
   render(<Select label={testLabel} options={options} error="Please choose a country" />)
 

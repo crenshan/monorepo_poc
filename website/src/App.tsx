@@ -15,6 +15,8 @@ import {
 import type { IconName } from '@mono/ui'
 import { add, isValidNumber } from '@mono/utils'
 import { LoginView } from './views/LoginView'
+import { ReportsView } from './views/ReportsView'
+import { TeamSettingsView } from './views/TeamSettingsView'
 
 import '@mono/ui/tokens.css'
 import './App.css'
@@ -24,7 +26,7 @@ const iconNames: IconName[] = ['check', 'x', 'chevronDown', 'alertCircle', 'spin
 function App() {
   const { toast } = useToast()
 
-  const [view, setView] = useState<'demo' | 'login'>('demo')
+  const [view, setView] = useState<'demo' | 'login' | 'team-settings' | 'reports'>('demo')
   const [nums, setNums] = useState({ a: '', b: '' })
   const [country, setCountry] = useState('')
   const [modalOpen, setModalOpen] = useState(false)
@@ -37,6 +39,28 @@ function App() {
           <Button onClick={() => setView('demo')}>Back to component demo</Button>
         </div>
         <LoginView />
+      </div>
+    )
+  }
+
+  if (view === 'team-settings') {
+    return (
+      <div className="demo">
+        <div className="demo-row">
+          <Button onClick={() => setView('demo')}>Back to component demo</Button>
+        </div>
+        <TeamSettingsView />
+      </div>
+    )
+  }
+
+  if (view === 'reports') {
+    return (
+      <div className="demo">
+        <div className="demo-row">
+          <Button onClick={() => setView('demo')}>Back to component demo</Button>
+        </div>
+        <ReportsView />
       </div>
     )
   }
@@ -57,6 +81,8 @@ function App() {
 
       <div className="demo-row">
         <Button onClick={() => setView('login')}>View login form</Button>
+        <Button onClick={() => setView('team-settings')}>View team settings</Button>
+        <Button onClick={() => setView('reports')}>View reports</Button>
       </div>
 
       <section className="demo-section">

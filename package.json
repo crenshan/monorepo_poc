@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "pnpm --filter website dev",
     "token-css": "pnpm --filter ui token-css",
+    "lint": "pnpm -r lint",
+    "lint:fix": "pnpm -r exec eslint . --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:all": "pnpm -r test"
   },

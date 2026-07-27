@@ -1,0 +1,36 @@
+.team-settings-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.team-settings-view__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.team-settings-view__header h2 {
+  margin: 0;
+}
+
+.team-settings-view__search {
+  width: calc(var(--space-xl) * 6);
+  max-width: 100%;
+}
+
+.team-settings-view__member {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.team-settings-view__empty {
+  text-align: center;
+  color: var(--color-textMuted);
+}
+
+.team-settings-view__empty p {
+  margin: 0;
+}

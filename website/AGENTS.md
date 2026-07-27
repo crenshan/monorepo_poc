@@ -5,7 +5,10 @@ Demo web app used for the purpose of illustrating the use of library dependencie
 ## Hard Boundaries
 
 - Use `@mono/ui` tokens (`--color-*`, `--space-*`, `--fontSize-*`, `--radius-*`). The variables in `src/index.css` (`--text`, `--border`, `--text-h`) are deprecated — don't use them in new code.
+  - ✅ `padding: var(--space-sm) var(--space-md);`
+  - ❌ `padding: var(--border) var(--text-h);`
 - No raw px or hex in view CSS
+  - ❌ `padding: 8px 16px;`
 - Always check the @mono/ui barrel export before writing new markup. If a primitive exists, use it.
 - If a needed primitive doesn't exist in @mono/ui, stop and ask — don't build it locally.
 - Never introduce raw semantic markup for a UI primitive (tables, dialogs, menus, form controls) in website/, even if similar markup exists elsewhere. Stop and ask.

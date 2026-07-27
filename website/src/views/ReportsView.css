@@ -1,0 +1,13 @@
+.reports-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.reports-view h2 {
+  margin: 0;
+}
+
+.reports-view__summary p {
+  margin: 0;
+}
