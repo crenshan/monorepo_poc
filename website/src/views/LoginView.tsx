@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import type { FormEvent } from 'react'
-import { Button, Card, Input, useToast } from '@mono/ui'
+import { useState } from 'react';
+import type { FormEvent } from 'react';
+import { Button, Card, Input, useToast } from '@mono/ui';
 
-import './LoginView.css'
+import './LoginView.css';
 
 export function LoginView() {
-  const { toast } = useToast()
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const { toast } = useToast();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    toast({ description: `Signed in as ${username || 'guest'} (mock)`, variant: 'success' })
-  }
+    event.preventDefault();
+    toast({ description: `Signed in as ${username || 'guest'} (mock)`, variant: 'success' });
+  };
 
   return (
     <div className="login-view">
@@ -38,5 +38,5 @@ export function LoginView() {
         </form>
       </Card>
     </div>
-  )
+  );
 }

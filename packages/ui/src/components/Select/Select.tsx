@@ -1,32 +1,40 @@
-import { useId } from 'react'
-import type { ReactNode, SelectHTMLAttributes } from 'react'
+import { useId } from 'react';
+import type { ReactNode, SelectHTMLAttributes } from 'react';
 
-import { Icon } from '../Icon'
-import styles from './Select.module.css'
+import { Icon } from '../Icon';
+import styles from './Select.module.css';
 
 export interface SelectOption {
-  value: string
-  label: string
-  disabled?: boolean
+  value: string;
+  label: string;
+  disabled?: boolean;
 }
 
 export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'children'> {
   // Same required-label rule as Input: no unlabeled selects.
-  label: ReactNode
+  label: ReactNode;
   // Keeps the accessible name while hiding the label visually, for compact contexts like a table cell.
-  hideLabel?: boolean
-  error?: string
-  options: SelectOption[]
-  placeholder?: string
+  hideLabel?: boolean;
+  error?: string;
+  options: SelectOption[];
+  placeholder?: string;
 }
 
-export function Select({ label, hideLabel, error, options, placeholder, id, ...props }: SelectProps) {
-  const generatedId = useId()
-  const selectId = id ?? generatedId
-  const errorId = `${selectId}-error`
+export function Select({
+  label,
+  hideLabel,
+  error,
+  options,
+  placeholder,
+  id,
+  ...props
+}: SelectProps) {
+  const generatedId = useId();
+  const selectId = id ?? generatedId;
+  const errorId = `${selectId}-error`;
   const labelClasses = [styles['ds-select__label'], hideLabel && styles['ds-select__label--hidden']]
     .filter(Boolean)
-    .join(' ')
+    .join(' ');
 
   return (
     <div className={styles['ds-select']}>
@@ -60,5 +68,5 @@ export function Select({ label, hideLabel, error, options, placeholder, id, ...p
         </span>
       )}
     </div>
-  )
+  );
 }

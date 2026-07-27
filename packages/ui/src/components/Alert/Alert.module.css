@@ -46,11 +46,11 @@
 }
 
 .ds-alert__dismiss:hover {
-  background: color-mix(in srgb, currentColor 12%, transparent);
+  background: color-mix(in srgb, currentcolor 12%, transparent);
 }
 
 .ds-alert__dismiss:focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid currentcolor;
   outline-offset: 2px;
 }
 

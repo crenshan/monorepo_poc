@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 // Small, hand-authored set for the POC — add new names here as new icons are needed.
-export type IconName = 'check' | 'x' | 'chevronDown' | 'alertCircle' | 'spinner'
+export type IconName = 'check' | 'x' | 'chevronDown' | 'alertCircle' | 'spinner';
 
 export const icons: Record<IconName, ReactNode> = {
   check: <path d="M5 13l4 4L19 7" />,
@@ -20,4 +20,4 @@ export const icons: Record<IconName, ReactNode> = {
       <path d="M21 12a9 9 0 0 0-9-9" />
     </>
   ),
-}
+};

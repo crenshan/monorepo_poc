@@ -1,0 +1,14 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]*(-[a-z][a-zA-Z0-9]*)*(__[a-z][a-zA-Z0-9]*(-[a-z][a-zA-Z0-9]*)*)?(--[a-z][a-zA-Z0-9]*(-[a-z][a-zA-Z0-9]*)*)?$",
+    "custom-property-pattern": "^[a-z][a-zA-Z0-9]*(-[a-z][a-zA-Z0-9]*)*$",
+    "property-no-deprecated": [true, { "ignoreProperties": ["clip"] }],
+    "value-keyword-case": [
+      "lower",
+      {
+        "ignoreProperties": ["font-family", "/^--/"]
+      }
+    ]
+  }
+}

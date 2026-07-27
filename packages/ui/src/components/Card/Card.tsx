@@ -1,9 +1,9 @@
-import type { HTMLAttributes, ReactNode } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react';
 
-import styles from './Card.module.css'
+import styles from './Card.module.css';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export function Card({ children, ...props }: CardProps) {
@@ -11,5 +11,5 @@ export function Card({ children, ...props }: CardProps) {
     <div className={styles['ds-card']} {...props}>
       {children}
     </div>
-  )
+  );
 }

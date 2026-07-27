@@ -1,24 +1,24 @@
-import type { SVGAttributes } from 'react'
+import type { SVGAttributes } from 'react';
 
-import { icons } from './icons'
-import type { IconName } from './icons'
-import styles from './Icon.module.css'
+import { icons } from './icons';
+import type { IconName } from './icons';
+import styles from './Icon.module.css';
 
-export type { IconName }
-export type IconSize = 'sm' | 'base' | 'lg' | 'xl'
+export type { IconName };
+export type IconSize = 'sm' | 'base' | 'lg' | 'xl';
 
 export interface IconProps extends Omit<SVGAttributes<SVGSVGElement>, 'name'> {
-  name: IconName
-  size?: IconSize
+  name: IconName;
+  size?: IconSize;
   // When provided, the icon becomes an accessible image with this as its name.
   // Omitted (the default) means the icon is decorative and hidden from assistive tech.
-  title?: string
+  title?: string;
 }
 
 export function Icon({ name, size = 'base', title, className, ...props }: IconProps) {
   const classes = [styles['ds-icon'], styles[`ds-icon--${size}`], className]
     .filter(Boolean)
-    .join(' ')
+    .join(' ');
 
   return (
     <svg
@@ -36,5 +36,5 @@ export function Icon({ name, size = 'base', title, className, ...props }: IconPr
       {title && <title>{title}</title>}
       {icons[name]}
     </svg>
-  )
+  );
 }

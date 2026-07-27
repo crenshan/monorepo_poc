@@ -54,7 +54,7 @@ const colors = {
   gray700: '#3d4551',
   gray800: '#1a1f29',
   gray900: '#0d1016',
-}
+};
 
 export const tokens = {
   color: {
@@ -94,10 +94,10 @@ export const tokens = {
     md: '8px',
     pill: '999px',
   },
-} as const
+} as const;
 
-export type Tokens = typeof tokens
-export type TokenGroup = keyof Tokens
+export type Tokens = typeof tokens;
+export type TokenGroup = keyof Tokens;
 
 // Flat lookup with dotted keys — the shape the MCP get_tokens endpoint returns,
 // and the basis for the CSS variable names.
@@ -105,13 +105,13 @@ export const flatTokens: Record<string, string | number> = Object.fromEntries(
   Object.entries(tokens).flatMap(([group, values]) =>
     Object.entries(values).map(([key, val]) => [`${group}.${key}`, val]),
   ),
-)
+);
 // flatTokens["color.primary"] === "#0B5FFF"
 
 // The CSS variable name for a given dotted token key.
 // "color.primary" -> "--color-primary"
-export const cssVarName = (dottedKey: string): string => `--${dottedKey.replace(/\./g, '-')}`
+export const cssVarName = (dottedKey: string): string => `--${dottedKey.replace(/\./g, '-')}`;
 
 // Convenience for use inside inline styles or CSS-in-JS if ever needed:
 // cssVar("color.primary") -> "var(--color-primary)"
-export const cssVar = (dottedKey: string): string => `var(${cssVarName(dottedKey)})`
+export const cssVar = (dottedKey: string): string => `var(${cssVarName(dottedKey)})`;

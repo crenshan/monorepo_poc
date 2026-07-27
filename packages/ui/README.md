@@ -4,25 +4,25 @@ An internal design system: a small set of React components built on a shared des
 
 ## Components
 
-| Component | Notes |
-| --- | --- |
-| `Button` | Standard button, disabled state |
-| `Input` | Labeled text input with error/`aria-invalid` support |
-| `Select` | Labeled native `<select>` with the same label/error contract as `Input` |
-| `Card` | Bordered surface for grouping content |
-| `Badge` | Small status pill — `neutral` / `primary` / `success` / `warning` / `danger` |
-| `Avatar` | Image with initials fallback, 4 sizes |
-| `Icon` | Small inline SVG icon set (`check`, `x`, `chevronDown`, `alertCircle`, `spinner`) |
-| `Spinner` | Loading indicator built on `Icon`, announces via `role="status"` |
-| `Modal` | Dialog rendered via `createPortal`, focus trap + restore, closes on Escape/overlay/close button |
-| `Alert` | Inline status banner, same variant colors as `Badge`, optional dismiss button |
-| `Toast` + `ToastProvider` / `useToast` | Auto-dismissing notifications, composes `Alert`, rendered in a portal |
+| Component                              | Notes                                                                                           |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `Button`                               | Standard button, disabled state                                                                 |
+| `Input`                                | Labeled text input with error/`aria-invalid` support                                            |
+| `Select`                               | Labeled native `<select>` with the same label/error contract as `Input`                         |
+| `Card`                                 | Bordered surface for grouping content                                                           |
+| `Badge`                                | Small status pill — `neutral` / `primary` / `success` / `warning` / `danger`                    |
+| `Avatar`                               | Image with initials fallback, 4 sizes                                                           |
+| `Icon`                                 | Small inline SVG icon set (`check`, `x`, `chevronDown`, `alertCircle`, `spinner`)               |
+| `Spinner`                              | Loading indicator built on `Icon`, announces via `role="status"`                                |
+| `Modal`                                | Dialog rendered via `createPortal`, focus trap + restore, closes on Escape/overlay/close button |
+| `Alert`                                | Inline status banner, same variant colors as `Badge`, optional dismiss button                   |
+| `Toast` + `ToastProvider` / `useToast` | Auto-dismissing notifications, composes `Alert`, rendered in a portal                           |
 
 All components are exported from the package root:
 
 ```tsx
-import { Button, Input, Modal, useToast } from '@mono/ui'
-import '@mono/ui/tokens.css'
+import { Button, Input, Modal, useToast } from '@mono/ui';
+import '@mono/ui/tokens.css';
 ```
 
 ## Design tokens
@@ -38,13 +38,13 @@ Every component has a co-located `Component.module.css`. Components import it as
 
 ## Scripts
 
-| Script | What it does |
-| --- | --- |
-| `pnpm dev` | Vite dev server for this package in isolation |
-| `pnpm test` | Runs the Vitest suite (`vitest run`) |
+| Script           | What it does                                      |
+| ---------------- | ------------------------------------------------- |
+| `pnpm dev`       | Vite dev server for this package in isolation     |
+| `pnpm test`      | Runs the Vitest suite (`vitest run`)              |
 | `pnpm token-css` | Regenerates `src/tokens.css` from `src/tokens.ts` |
-| `pnpm build` | Regenerates tokens, typechecks, and builds |
-| `pnpm lint` | ESLint |
+| `pnpm build`     | Regenerates tokens, typechecks, and builds        |
+| `pnpm lint`      | ESLint                                            |
 
 ## Testing
 

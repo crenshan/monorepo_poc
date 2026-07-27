@@ -1,9 +1,12 @@
 {
   "name": "@mono/utils",
   "version": "0.0.1",
+  "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "typescript": "~6.0.3",

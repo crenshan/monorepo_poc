@@ -1,0 +1,7 @@
+# Build output
+**/dist/**
+**/dist-ssr/**
+**/build/**
+
+# Generated
+packages/ui/src/tokens.css

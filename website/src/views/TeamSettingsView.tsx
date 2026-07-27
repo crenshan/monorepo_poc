@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import type { ChangeEvent } from 'react'
+import { useState } from 'react';
+import type { ChangeEvent } from 'react';
 import {
   Avatar,
   Card,
@@ -12,55 +12,55 @@ import {
   TableHeaderCell,
   TableRow,
   useToast,
-} from '@mono/ui'
+} from '@mono/ui';
 
-import './TeamSettingsView.css'
+import './TeamSettingsView.css';
 
-type Role = 'admin' | 'editor' | 'viewer'
+type Role = 'admin' | 'editor' | 'viewer';
 
 interface Member {
-  id: string
-  name: string
-  role: Role
-  lastActive: string
+  id: string;
+  name: string;
+  role: Role;
+  lastActive: string;
 }
 
 const roleOptions: { value: Role; label: string }[] = [
   { value: 'admin', label: 'Admin' },
   { value: 'editor', label: 'Editor' },
   { value: 'viewer', label: 'Viewer' },
-]
+];
 
 const roleLabel: Record<Role, string> = {
   admin: 'Admin',
   editor: 'Editor',
   viewer: 'Viewer',
-}
+};
 
 const initialMembers: Member[] = [
   { id: '1', name: 'Ada Lovelace', role: 'admin', lastActive: '2 hours ago' },
   { id: '2', name: 'Grace Hopper', role: 'editor', lastActive: 'Yesterday' },
   { id: '3', name: 'Alan Turing', role: 'viewer', lastActive: '3 days ago' },
   { id: '4', name: 'Katherine Johnson', role: 'editor', lastActive: '1 week ago' },
-]
+];
 
 export function TeamSettingsView() {
-  const { toast } = useToast()
-  const [members, setMembers] = useState<Member[]>(initialMembers)
-  const [query, setQuery] = useState('')
+  const { toast } = useToast();
+  const [members, setMembers] = useState<Member[]>(initialMembers);
+  const [query, setQuery] = useState('');
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value)
-  }
+    setQuery(event.target.value);
+  };
 
   const handleRoleChange = (member: Member, role: Role) => {
-    setMembers((prev) => prev.map((m) => (m.id === member.id ? { ...m, role } : m)))
-    toast({ description: `${member.name} is now ${roleLabel[role]}`, variant: 'success' })
-  }
+    setMembers((prev) => prev.map((m) => (m.id === member.id ? { ...m, role } : m)));
+    toast({ description: `${member.name} is now ${roleLabel[role]}`, variant: 'success' });
+  };
 
   const filteredMembers = members.filter((member) =>
     member.name.toLowerCase().includes(query.trim().toLowerCase()),
-  )
+  );
 
   return (
     <div className="team-settings-view">
@@ -78,11 +78,7 @@ export function TeamSettingsView() {
 
       {filteredMembers.length === 0 ? (
         <Card className="team-settings-view__empty">
-          <p>
-            {members.length === 0
-              ? 'No team members yet.'
-              : `No members match "${query}".`}
-          </p>
+          <p>{members.length === 0 ? 'No team members yet.' : `No members match "${query}".`}</p>
         </Card>
       ) : (
         <Table aria-label="Team members">
@@ -118,5 +114,5 @@ export function TeamSettingsView() {
         </Table>
       )}
     </div>
-  )
+  );
 }

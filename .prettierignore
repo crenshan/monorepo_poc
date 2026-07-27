@@ -1,0 +1,21 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+build
+*.tsbuildinfo
+
+# Generated
+packages/ui/src/tokens.css
+
+# Lockfiles
+pnpm-lock.yaml
+
+# Testing / coverage
+coverage
+
+# Misc caches
+.turbo
+.cache

@@ -1,9 +1,9 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-import styles from './Button.module.css'
+import styles from './Button.module.css';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export function Button({ children, ...props }: ButtonProps) {
@@ -11,5 +11,5 @@ export function Button({ children, ...props }: ButtonProps) {
     <button className={styles['ds-button']} {...props}>
       {children}
     </button>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState } from 'react'
+import { type ChangeEvent, useState } from 'react';
 import {
   Alert,
   Avatar,
@@ -11,26 +11,26 @@ import {
   Select,
   Spinner,
   useToast,
-} from '@mono/ui'
-import type { IconName } from '@mono/ui'
-import { add, isValidNumber } from '@mono/utils'
-import { LoginView } from './views/LoginView'
-import { ReportsView } from './views/ReportsView'
-import { TeamSettingsView } from './views/TeamSettingsView'
+} from '@mono/ui';
+import type { IconName } from '@mono/ui';
+import { add, isValidNumber } from '@mono/utils';
+import { LoginView } from './views/LoginView';
+import { ReportsView } from './views/ReportsView';
+import { TeamSettingsView } from './views/TeamSettingsView';
 
-import '@mono/ui/tokens.css'
-import './App.css'
+import '@mono/ui/tokens.css';
+import './App.css';
 
-const iconNames: IconName[] = ['check', 'x', 'chevronDown', 'alertCircle', 'spinner']
+const iconNames: IconName[] = ['check', 'x', 'chevronDown', 'alertCircle', 'spinner'];
 
 function App() {
-  const { toast } = useToast()
+  const { toast } = useToast();
 
-  const [view, setView] = useState<'demo' | 'login' | 'team-settings' | 'reports'>('demo')
-  const [nums, setNums] = useState({ a: '', b: '' })
-  const [country, setCountry] = useState('')
-  const [modalOpen, setModalOpen] = useState(false)
-  const [sum, setSum] = useState<number | null>(null)
+  const [view, setView] = useState<'demo' | 'login' | 'team-settings' | 'reports'>('demo');
+  const [nums, setNums] = useState({ a: '', b: '' });
+  const [country, setCountry] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [sum, setSum] = useState<number | null>(null);
 
   if (view === 'login') {
     return (
@@ -40,7 +40,7 @@ function App() {
         </div>
         <LoginView />
       </div>
-    )
+    );
   }
 
   if (view === 'team-settings') {
@@ -51,7 +51,7 @@ function App() {
         </div>
         <TeamSettingsView />
       </div>
-    )
+    );
   }
 
   if (view === 'reports') {
@@ -62,18 +62,18 @@ function App() {
         </div>
         <ReportsView />
       </div>
-    )
+    );
   }
 
   const handleNumChange = (key: keyof typeof nums) => (e: ChangeEvent<HTMLInputElement>) => {
     setNums((prevNums) => ({
       ...prevNums,
       [key]: e.target.value,
-    }))
-  }
+    }));
+  };
 
-  const aValid = isValidNumber(nums.a)
-  const bValid = isValidNumber(nums.b)
+  const aValid = isValidNumber(nums.a);
+  const bValid = isValidNumber(nums.b);
 
   return (
     <div className="demo">
@@ -233,7 +233,7 @@ function App() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

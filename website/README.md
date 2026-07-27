@@ -10,11 +10,11 @@ A Vite + React app that consumes [`@mono/ui`](../packages/ui/README.md) and [`@m
 
 ## Scripts
 
-| Script | What it does |
-| --- | --- |
-| `pnpm dev` | Starts the Vite dev server |
-| `pnpm build` | Typechecks and builds for production |
-| `pnpm lint` | ESLint |
-| `pnpm preview` | Serves the production build locally |
+| Script         | What it does                         |
+| -------------- | ------------------------------------ |
+| `pnpm dev`     | Starts the Vite dev server           |
+| `pnpm build`   | Typechecks and builds for production |
+| `pnpm lint`    | ESLint                               |
+| `pnpm preview` | Serves the production build locally  |
 
 From the monorepo root, the same scripts are available via `pnpm --filter website <script>`, and `pnpm dev` at the root runs this app's dev server directly.

@@ -8,8 +8,14 @@
     "token-css": "pnpm --filter ui token-css",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r exec eslint . --fix",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:css:fix": "stylelint \"**/*.css\" --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm -r typecheck",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:all": "pnpm -r test"
+    "test:all": "pnpm -r test",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +27,18 @@
       "onFail": "download"
     }
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.7.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.7.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.2.0",
+    "prettier": "^3.9.6",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard": "^40.0.0",
+    "typescript-eslint": "^8.65.0"
+  }
 }

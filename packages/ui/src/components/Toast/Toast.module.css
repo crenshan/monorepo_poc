@@ -11,4 +11,3 @@
   width: calc(var(--space-xl) * 9);
   max-width: calc(100% - var(--space-xl));
 }
-

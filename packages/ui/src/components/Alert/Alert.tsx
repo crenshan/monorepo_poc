@@ -1,10 +1,10 @@
-import type { HTMLAttributes, ReactNode } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react';
 
-import { Icon } from '../Icon'
-import type { IconName } from '../Icon'
-import styles from './Alert.module.css'
+import { Icon } from '../Icon';
+import type { IconName } from '../Icon';
+import styles from './Alert.module.css';
 
-export type AlertVariant = 'neutral' | 'primary' | 'success' | 'warning' | 'danger'
+export type AlertVariant = 'neutral' | 'primary' | 'success' | 'warning' | 'danger';
 
 const variantIcon: Record<AlertVariant, IconName> = {
   neutral: 'alertCircle',
@@ -12,13 +12,13 @@ const variantIcon: Record<AlertVariant, IconName> = {
   success: 'check',
   warning: 'alertCircle',
   danger: 'alertCircle',
-}
+};
 
 export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
-  variant?: AlertVariant
-  title?: ReactNode
-  children: ReactNode
-  onDismiss?: () => void
+  variant?: AlertVariant;
+  title?: ReactNode;
+  children: ReactNode;
+  onDismiss?: () => void;
 }
 
 export function Alert({
@@ -31,7 +31,7 @@ export function Alert({
 }: AlertProps) {
   const classes = [styles['ds-alert'], styles[`ds-alert--${variant}`], className]
     .filter(Boolean)
-    .join(' ')
+    .join(' ');
 
   return (
     <div
@@ -56,5 +56,5 @@ export function Alert({
         </button>
       )}
     </div>
-  )
+  );
 }

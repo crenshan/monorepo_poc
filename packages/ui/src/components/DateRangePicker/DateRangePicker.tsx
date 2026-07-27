@@ -1,24 +1,24 @@
-import { useId } from 'react'
-import type { ReactNode } from 'react'
+import { useId } from 'react';
+import type { ReactNode } from 'react';
 
-import { Input } from '../Input'
-import styles from './DateRangePicker.module.css'
+import { Input } from '../Input';
+import styles from './DateRangePicker.module.css';
 
 export interface DateRangeValue {
-  start: string
-  end: string
+  start: string;
+  end: string;
 }
 
 export interface DateRangePickerProps {
   // Groups the two fields — rendered as the fieldset legend.
-  label: ReactNode
-  value: DateRangeValue
-  onChange: (value: DateRangeValue) => void
-  startLabel?: ReactNode
-  endLabel?: ReactNode
-  error?: string
-  min?: string
-  max?: string
+  label: ReactNode;
+  value: DateRangeValue;
+  onChange: (value: DateRangeValue) => void;
+  startLabel?: ReactNode;
+  endLabel?: ReactNode;
+  error?: string;
+  min?: string;
+  max?: string;
 }
 
 export function DateRangePicker({
@@ -31,8 +31,8 @@ export function DateRangePicker({
   min,
   max,
 }: DateRangePickerProps) {
-  const generatedId = useId()
-  const errorId = `${generatedId}-error`
+  const generatedId = useId();
+  const errorId = `${generatedId}-error`;
 
   return (
     <fieldset className={styles['ds-dateRange']} aria-describedby={error ? errorId : undefined}>
@@ -64,5 +64,5 @@ export function DateRangePicker({
         </span>
       )}
     </fieldset>
-  )
+  );
 }

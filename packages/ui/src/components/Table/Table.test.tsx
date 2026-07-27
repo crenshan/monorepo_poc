@@ -1,6 +1,6 @@
-import { test, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from './Table'
+import { test, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from './Table';
 
 function renderSample() {
   return render(
@@ -18,30 +18,30 @@ function renderSample() {
         </TableRow>
       </TableBody>
     </Table>,
-  )
+  );
 }
 
 test('Table renders as a native table with an accessible name', () => {
-  renderSample()
+  renderSample();
 
-  expect(screen.getByRole('table', { name: 'Members' })).toBeInTheDocument()
-})
+  expect(screen.getByRole('table', { name: 'Members' })).toBeInTheDocument();
+});
 
 test('Table renders header cells as column headers', () => {
-  renderSample()
+  renderSample();
 
-  const columnHeaders = screen.getAllByRole('columnheader')
-  expect(columnHeaders).toHaveLength(2)
-  expect(columnHeaders[0]).toHaveTextContent('Name')
-  expect(columnHeaders[0]).toHaveAttribute('scope', 'col')
-})
+  const columnHeaders = screen.getAllByRole('columnheader');
+  expect(columnHeaders).toHaveLength(2);
+  expect(columnHeaders[0]).toHaveTextContent('Name');
+  expect(columnHeaders[0]).toHaveAttribute('scope', 'col');
+});
 
 test('Table renders body rows and cells', () => {
-  renderSample()
+  renderSample();
 
-  expect(screen.getByRole('row', { name: 'Ada Lovelace Admin' })).toBeInTheDocument()
-  expect(screen.getByRole('cell', { name: 'Ada Lovelace' })).toBeInTheDocument()
-})
+  expect(screen.getByRole('row', { name: 'Ada Lovelace Admin' })).toBeInTheDocument();
+  expect(screen.getByRole('cell', { name: 'Ada Lovelace' })).toBeInTheDocument();
+});
 
 test('TableHeaderCell allows overriding scope', () => {
   render(
@@ -53,7 +53,7 @@ test('TableHeaderCell allows overriding scope', () => {
         </TableRow>
       </TableBody>
     </Table>,
-  )
+  );
 
-  expect(screen.getByRole('rowheader')).toHaveAttribute('scope', 'row')
-})
+  expect(screen.getByRole('rowheader')).toHaveAttribute('scope', 'row');
+});

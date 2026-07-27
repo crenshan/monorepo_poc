@@ -1,19 +1,19 @@
-import { useId } from 'react'
-import type { InputHTMLAttributes, ReactNode } from 'react'
+import { useId } from 'react';
+import type { InputHTMLAttributes, ReactNode } from 'react';
 
-import styles from './Input.module.css'
+import styles from './Input.module.css';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   // Label is required, not optional — the a11y feature the CI agent enforces:
   // no unlabeled inputs allowed.
-  label: ReactNode
-  error?: string
+  label: ReactNode;
+  error?: string;
 }
 
 export function Input({ label, error, id, ...props }: InputProps) {
-  const generatedId = useId()
-  const inputId = id ?? generatedId
-  const errorId = `${inputId}-error`
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
+  const errorId = `${inputId}-error`;
 
   return (
     <div className={styles['ds-field']}>
@@ -33,5 +33,5 @@ export function Input({ label, error, id, ...props }: InputProps) {
         </span>
       )}
     </div>
-  )
+  );
 }
