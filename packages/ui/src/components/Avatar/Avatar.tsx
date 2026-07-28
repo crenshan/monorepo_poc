@@ -10,6 +10,9 @@ export interface AvatarProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'chil
   name: string;
   src?: string;
   size?: AvatarSize;
+  // Set when adjacent visible text already names the person, so the avatar
+  // shouldn't also be announced — avoids screen readers reading the name twice.
+  decorative?: boolean;
 }
 
 function getInitials(name: string): string {
@@ -21,7 +24,14 @@ function getInitials(name: string): string {
   return (first + last).toUpperCase();
 }
 
-export function Avatar({ name, src, size = 'base', className, ...props }: AvatarProps) {
+export function Avatar({
+  name,
+  src,
+  size = 'base',
+  decorative = false,
+  className,
+  ...props
+}: AvatarProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const classes = [styles['ds-avatar'], styles[`ds-avatar--${size}`], className]
     .filter(Boolean)
@@ -29,16 +39,20 @@ export function Avatar({ name, src, size = 'base', className, ...props }: Avatar
   const showImage = Boolean(src) && !imageFailed;
 
   return (
-    <span className={classes} {...props}>
+    <span className={classes} aria-hidden={decorative || undefined} {...props}>
       {showImage ? (
         <img
           className={styles['ds-avatar__image']}
           src={src}
-          alt={name}
+          alt={decorative ? '' : name}
           onError={() => setImageFailed(true)}
         />
       ) : (
-        <span className={styles['ds-avatar__initials']} role="img" aria-label={name}>
+        <span
+          className={styles['ds-avatar__initials']}
+          role={decorative ? undefined : 'img'}
+          aria-label={decorative ? undefined : name}
+        >
           {getInitials(name)}
         </span>
       )}

@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd /Users/natcren/Documents/Projects/_Nasdaq/monorepo || exit 0\nts_files=(); css_files=(); fmt_files=()\nwhile IFS= read -r -d '' f; do\n  [ -f \"$f\" ] || continue\n  case \"$f\" in\n    *.js|*.jsx|*.ts|*.tsx) ts_files+=(\"$f\"); fmt_files+=(\"$f\") ;;\n    *.css) css_files+=(\"$f\"); fmt_files+=(\"$f\") ;;\n    *.json|*.md|*.yml|*.yaml|*.html) fmt_files+=(\"$f\") ;;\n  esac\ndone < <( { git diff --name-only --diff-filter=ACMR -z HEAD; git ls-files --others --exclude-standard -z; } | sort -zu )\n[ ${#ts_files[@]} -gt 0 ] && pnpm exec eslint --fix \"${ts_files[@]}\"\n[ ${#css_files[@]} -gt 0 ] && pnpm exec stylelint --fix \"${css_files[@]}\"\n[ ${#fmt_files[@]} -gt 0 ] && pnpm exec prettier --write \"${fmt_files[@]}\"\ntrue",
+            "command": "bash -c 'cd /Users/natcren/Documents/Projects/_Nasdaq/monorepo || exit 0\nts_files=(); css_files=(); fmt_files=()\nwhile IFS= read -r -d '\\'''\\'' f; do\n  [ -f \"$f\" ] || continue\n  case \"$f\" in\n    *.js|*.jsx|*.ts|*.tsx) ts_files+=(\"$f\"); fmt_files+=(\"$f\") ;;\n    *.css) css_files+=(\"$f\"); fmt_files+=(\"$f\") ;;\n    *.json|*.md|*.yml|*.yaml|*.html) fmt_files+=(\"$f\") ;;\n  esac\ndone < <( { git diff --name-only --diff-filter=ACMR -z HEAD; git ls-files --others --exclude-standard -z; } | sort -zu )\n[ ${#ts_files[@]} -gt 0 ] && pnpm exec eslint --fix \"${ts_files[@]}\"\n[ ${#css_files[@]} -gt 0 ] && pnpm exec stylelint --fix \"${css_files[@]}\"\n[ ${#fmt_files[@]} -gt 0 ] && pnpm exec prettier --write \"${fmt_files[@]}\"\ntrue'",
             "timeout": 60,
             "statusMessage": "Linting/formatting changed files..."
           }

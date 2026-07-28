@@ -94,7 +94,7 @@ export function TeamSettingsView() {
               <TableRow key={member.id}>
                 <TableCell>
                   <div className="team-settings-view__member">
-                    <Avatar name={member.name} size="sm" />
+                    <Avatar name={member.name} size="sm" decorative />
                     <span>{member.name}</span>
                   </div>
                 </TableCell>

@@ -12,6 +12,9 @@
 }
 
 .team-settings-view__header h2 {
+  color: var(--color-text);
+  font-size: var(--fontSize-xl);
+  font-weight: var(--fontWeight-bold);
   margin: 0;
 }
 

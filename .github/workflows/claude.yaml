@@ -1,0 +1,28 @@
+name: Claude Code
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      actions: read # Required for Claude to read CI results on PRs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Review this PR for compliance with the repo's documented rules.
+
+            For each changed file, read the nearest AGENTS.md (walking up from the
+            file's directory to the repo root) and check the change against those
+            rules. The root AGENTS.md applies everywhere; packages/ui/AGENTS.md,
+            packages/utils/AGENTS.md, and website/AGENTS.md add package-specific rules.
+
+            Report violations with file, line, the rule broken, and the fix.
+            Do not comment on style preferences that aren't documented rules.

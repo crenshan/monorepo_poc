@@ -11,3 +11,12 @@
 .reports-view__summary p {
   margin: 0;
 }
+
+.reports-view__empty {
+  text-align: center;
+  color: var(--color-textMuted);
+}
+
+.reports-view__empty p {
+  margin: 0;
+}
