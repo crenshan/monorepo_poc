@@ -71,6 +71,7 @@ function App() {
         <div className="demo-row">
           <Button onClick={() => setView('demo')}>Back to component demo</Button>
         </div>
+        <h2>TESTING</h2>
         <div className="demo-row">
           <button className="test-button">This is a button</button>
         </div>
