@@ -20,6 +20,7 @@ import { TeamSettingsView } from './views/TeamSettingsView';
 
 import '@mono/ui/tokens.css';
 import './App.css';
+import { TestView } from './views/TestView';
 
 const iconNames: IconName[] = ['check', 'x', 'chevronDown', 'alertCircle', 'spinner'];
 
@@ -71,13 +72,8 @@ function App() {
         <div className="demo-row">
           <Button onClick={() => setView('demo')}>Back to component demo</Button>
         </div>
-        <h2>TESTING</h2>
-        <div className="demo-row">
-          <button className="test-button">This is a button</button>
-        </div>
-        <div className="demo-row">
-          <input className="test-input" value="Test Input" />
-        </div>
+
+        <TestView />
       </div>
     );
   }

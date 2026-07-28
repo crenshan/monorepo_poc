@@ -39,13 +39,3 @@
   font-size: 13px;
   color: var(--text);
 }
-
-.test-button {
-  padding: 12px 14px;
-  color: var(--text);
-}
-
-.test-input {
-  padding: 12px 14px;
-  color: var(--text);
-}
