@@ -6,12 +6,36 @@ import { Icon } from '../Icon';
 import styles from './Modal.module.css';
 
 export interface ModalProps {
+  /** Whether the modal is currently visible. When `false`, the component renders nothing. */
   open: boolean;
+  /** Called when the user requests to close the modal (Escape key, backdrop click, or the close button). */
   onClose: () => void;
+  /** Heading content rendered in the modal header and linked to the dialog via `aria-labelledby`. */
   title: ReactNode;
+  /** Body content rendered inside the dialog. */
   children: ReactNode;
 }
 
+/**
+ * A focused, modal dialog rendered into `document.body` via a portal, used to interrupt the
+ * user with a task or piece of information that requires their attention before continuing.
+ *
+ * @category Overlay
+ *
+ * @example
+ * ```tsx
+ * <Modal open={isOpen} onClose={() => setIsOpen(false)} title="Delete item">
+ *   Are you sure you want to delete this item?
+ * </Modal>
+ * ```
+ *
+ * Accessibility: the dialog exposes `role="dialog"`, `aria-modal="true"`, and
+ * `aria-labelledby` pointing at the title. While open, focus moves to the dialog, the
+ * Escape key calls `onClose`, and background scrolling is locked by setting
+ * `document.body.style.overflow`. On close/unmount, focus is restored to whatever
+ * element was focused before the modal opened. Note that focus is moved to the dialog
+ * container only — focus is not trapped/cycled within the dialog's interactive children.
+ */
 export function Modal({ open, onClose, title, children }: ModalProps) {
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);

@@ -3,15 +3,25 @@ import type { HTMLAttributes } from 'react';
 
 import styles from './Avatar.module.css';
 
+/** Size of an {@link Avatar}. */
 export type AvatarSize = 'sm' | 'base' | 'lg' | 'xl';
 
 export interface AvatarProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> {
-  // Always required — it's both the fallback source (initials) and the image alt text.
+  /**
+   * The person's name. Always required — it's both the source for the fallback
+   * initials and the accessible/image alt text (unless `decorative` is set).
+   */
   name: string;
+  /** URL of the image to display. Falls back to initials if omitted or if the image fails to load. */
   src?: string;
+  /** Size of the avatar. Defaults to `'base'`. */
   size?: AvatarSize;
-  // Set when adjacent visible text already names the person, so the avatar
-  // shouldn't also be announced — avoids screen readers reading the name twice.
+  /**
+   * Set when adjacent visible text already names the person, so the avatar
+   * shouldn't also be announced — avoids screen readers reading the name twice.
+   * When `true`, the avatar is hidden from assistive tech (`aria-hidden`, empty
+   * image `alt`, no `role`/`aria-label` on the initials fallback).
+   */
   decorative?: boolean;
 }
 
@@ -24,6 +34,21 @@ function getInitials(name: string): string {
   return (first + last).toUpperCase();
 }
 
+/**
+ * Displays a person's picture, or their initials as a fallback when no image is
+ * provided or the image fails to load. Reach for it when representing a user or
+ * account in lists, headers, or comments. By default the avatar exposes the
+ * person's name to assistive tech (`role="img"` with `aria-label`, or image
+ * `alt` text); set `decorative` when nearby visible text already names the
+ * person, to avoid the name being announced twice.
+ *
+ * @category Data Display
+ *
+ * @example
+ * ```tsx
+ * <Avatar name="Ada Lovelace" src="/avatars/ada.jpg" size="lg" />
+ * ```
+ */
 export function Avatar({
   name,
   src,

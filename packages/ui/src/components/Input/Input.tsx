@@ -4,12 +4,40 @@ import type { InputHTMLAttributes, ReactNode } from 'react';
 import styles from './Input.module.css';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  // Label is required, not optional — the a11y feature the CI agent enforces:
-  // no unlabeled inputs allowed.
+  /**
+   * Accessible label rendered above the input and associated via `htmlFor`/`id`.
+   * Required (not optional) — this is the a11y rule the CI agent enforces:
+   * no unlabeled inputs are allowed.
+   */
   label: ReactNode;
+  /** Validation error message. When set, renders a `role="alert"` message below the
+   * input and marks the input `aria-invalid` with `aria-describedby` pointing at it. */
   error?: string;
 }
 
+/**
+ * A single-line text field with a required, associated label and optional inline
+ * validation error. Reach for this any time you need a labelled native `<input>`
+ * (text, email, date, etc. — via the native `type` prop) inside a form.
+ *
+ * Accessibility: the label is linked to the input with `htmlFor`/`id` (an id is
+ * auto-generated via `useId` if none is passed), and when `error` is set the input
+ * gets `aria-invalid="true"` plus `aria-describedby` pointing at the error message,
+ * which is itself rendered with `role="alert"`.
+ *
+ * @category User Input
+ *
+ * @example
+ * ```tsx
+ * <Input
+ *   label="Email address"
+ *   type="email"
+ *   value={email}
+ *   onChange={(e) => setEmail(e.target.value)}
+ *   error={emailError}
+ * />
+ * ```
+ */
 export function Input({ label, error, id, ...props }: InputProps) {
   const generatedId = useId();
   const inputId = id ?? generatedId;

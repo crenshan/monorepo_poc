@@ -1,0 +1,613 @@
+{
+  "package": "@mono/ui",
+  "categories": [
+    "Layout",
+    "Feedback",
+    "Data Display",
+    "User Input",
+    "Overlay",
+    "Navigation",
+    "Decorative"
+  ],
+  "components": [
+    {
+      "name": "Alert",
+      "type": "component",
+      "category": "Feedback",
+      "description": "Displays a short, dismissible status message to draw attention to important information (success confirmations, warnings, errors, etc.). Use it to surface feedback about the result of an action or the current state of the page.",
+      "sourcePath": "src/components/Alert/Alert.tsx",
+      "extends": "HTMLAttributes<HTMLDivElement> (omit 'title')",
+      "notes": "Danger-variant alerts use role=\"alert\" (assertive); all other variants use role=\"status\" (polite).",
+      "props": [
+        {
+          "name": "variant",
+          "type": "AlertVariant",
+          "required": false,
+          "default": "'neutral'",
+          "description": "Visual style and ARIA role of the alert."
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": false,
+          "default": null,
+          "description": "Optional heading rendered above the alert's description."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "default": null,
+          "description": "The alert's main message content."
+        },
+        {
+          "name": "onDismiss",
+          "type": "() => void",
+          "required": false,
+          "default": null,
+          "description": "Called when the user clicks the dismiss (×) button. If omitted, no dismiss button is rendered."
+        }
+      ],
+      "example": "<Alert variant=\"success\" title=\"Changes saved\">\n  Your profile has been updated.\n</Alert>"
+    },
+    {
+      "name": "Avatar",
+      "type": "component",
+      "category": "Data Display",
+      "description": "Displays a person's picture, or their initials as a fallback when no image is provided or the image fails to load. Use it to represent a user or account in lists, headers, or comments.",
+      "sourcePath": "src/components/Avatar/Avatar.tsx",
+      "extends": "HTMLAttributes<HTMLSpanElement> (omit 'children')",
+      "notes": "By default the avatar exposes the person's name to assistive tech (role=\"img\" + aria-label, or image alt text). Set decorative when nearby visible text already names the person, to avoid the name being announced twice.",
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "default": null,
+          "description": "The person's name. Source for the fallback initials and the accessible/image alt text (unless decorative is set)."
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "required": false,
+          "default": null,
+          "description": "URL of the image to display. Falls back to initials if omitted or if the image fails to load."
+        },
+        {
+          "name": "size",
+          "type": "AvatarSize",
+          "required": false,
+          "default": "'base'",
+          "description": "Size of the avatar."
+        },
+        {
+          "name": "decorative",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Set when adjacent visible text already names the person, hiding the avatar from assistive tech."
+        }
+      ],
+      "example": "<Avatar name=\"Ada Lovelace\" src=\"/avatars/ada.jpg\" size=\"lg\" />"
+    },
+    {
+      "name": "Badge",
+      "type": "component",
+      "category": "Data Display",
+      "description": "Renders a small, inline label used to tag an item with a status, category, or count (e.g. \"New\", \"Beta\", an unread count). Use it for a compact, non-interactive visual marker alongside other content.",
+      "sourcePath": "src/components/Badge/Badge.tsx",
+      "extends": "HTMLAttributes<HTMLSpanElement>",
+      "notes": null,
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "default": null,
+          "description": "The label content rendered inside the badge, typically a short word or count."
+        },
+        {
+          "name": "variant",
+          "type": "BadgeVariant",
+          "required": false,
+          "default": "'neutral'",
+          "description": "Visual style of the badge."
+        }
+      ],
+      "example": "<Badge variant=\"success\">Active</Badge>"
+    },
+    {
+      "name": "Button",
+      "type": "component",
+      "category": "User Input",
+      "description": "A clickable button styled to match the design system, for triggering actions such as submitting a form or opening a dialog.",
+      "sourcePath": "src/components/Button/Button.tsx",
+      "extends": "ButtonHTMLAttributes<HTMLButtonElement>",
+      "notes": "All standard button HTML attributes (onClick, disabled, type, etc.) are supported and passed through to the underlying <button>.",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "default": null,
+          "description": "Content rendered inside the button."
+        }
+      ],
+      "example": "<Button onClick={handleSave} disabled={isSaving}>\n  Save changes\n</Button>"
+    },
+    {
+      "name": "Card",
+      "type": "component",
+      "category": "Layout",
+      "description": "A container that groups related content in a bordered, padded surface. Use it for discrete blocks of content (list items, summary panels, dashboard tiles, etc.) that should read as a single unit.",
+      "sourcePath": "src/components/Card/Card.tsx",
+      "extends": "HTMLAttributes<HTMLDivElement>",
+      "notes": null,
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "default": null,
+          "description": "Content rendered inside the card."
+        }
+      ],
+      "example": "<Card>\n  <h3>Account summary</h3>\n  <p>You have 3 pending invoices.</p>\n</Card>"
+    },
+    {
+      "name": "DateRangePicker",
+      "type": "component",
+      "category": "User Input",
+      "description": "A paired start/end date selector, rendered as a <fieldset> containing two Input fields of type 'date'. Use it whenever a user needs to pick a bounded date range (e.g. filtering a report by date). Controlled: always reflects value and reports changes via onChange.",
+      "sourcePath": "src/components/DateRangePicker/DateRangePicker.tsx",
+      "extends": null,
+      "notes": "Each field's bounds constrain the other to keep the range valid: the start field's max is the selected end date (or the max prop), and the end field's min is the selected start date (or the min prop). Renders as <fieldset>/<legend> so screen readers announce the fields as related; when error is set, the fieldset gets aria-describedby pointing at a role=\"alert\" message.",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "required": true,
+          "default": null,
+          "description": "Label grouping the two date fields, rendered as the <fieldset> legend."
+        },
+        {
+          "name": "value",
+          "type": "DateRangeValue",
+          "required": true,
+          "default": null,
+          "description": "The current start/end selection. Always pass alongside onChange (controlled)."
+        },
+        {
+          "name": "onChange",
+          "type": "(value: DateRangeValue) => void",
+          "required": true,
+          "default": null,
+          "description": "Called whenever either date field changes, with the full updated { start, end } value."
+        },
+        {
+          "name": "startLabel",
+          "type": "ReactNode",
+          "required": false,
+          "default": "'Start date'",
+          "description": "Label for the start date field."
+        },
+        {
+          "name": "endLabel",
+          "type": "ReactNode",
+          "required": false,
+          "default": "'End date'",
+          "description": "Label for the end date field."
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "required": false,
+          "default": null,
+          "description": "Validation error message, rendered below the fields with role=\"alert\"."
+        },
+        {
+          "name": "min",
+          "type": "string",
+          "required": false,
+          "default": null,
+          "description": "Earliest selectable date (ISO YYYY-MM-DD) for the start field."
+        },
+        {
+          "name": "max",
+          "type": "string",
+          "required": false,
+          "default": null,
+          "description": "Latest selectable date (ISO YYYY-MM-DD) for the end field."
+        }
+      ],
+      "example": "<DateRangePicker\n  label=\"Reporting period\"\n  value={range}\n  onChange={setRange}\n  min=\"2024-01-01\"\n  max=\"2026-12-31\"\n/>"
+    },
+    {
+      "name": "Icon",
+      "type": "component",
+      "category": "Decorative",
+      "description": "Renders a single icon from the design system's icon registry as an inline SVG. Use it anywhere a small, currentColor-tinted vector graphic is needed (buttons, status indicators, etc.).",
+      "sourcePath": "src/components/Icon/Icon.tsx",
+      "extends": "SVGAttributes<SVGSVGElement> (omit 'name')",
+      "notes": "By default the icon is purely decorative (aria-hidden=\"true\"). Pass title to expose it to assistive technology as a named image (role=\"img\" with an SVG <title>) when the icon conveys meaning not otherwise available as text nearby (e.g. an icon-only button).",
+      "props": [
+        {
+          "name": "name",
+          "type": "IconName",
+          "required": true,
+          "default": null,
+          "description": "Which icon from the registry to render."
+        },
+        {
+          "name": "size",
+          "type": "IconSize",
+          "required": false,
+          "default": "'base'",
+          "description": "Rendered size of the icon."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "default": null,
+          "description": "When provided, the icon becomes an accessible image with this as its accessible name."
+        }
+      ],
+      "example": "<Icon name=\"check\" size=\"sm\" />"
+    },
+    {
+      "name": "Input",
+      "type": "component",
+      "category": "User Input",
+      "description": "A single-line text field with a required, associated label and optional inline validation error. Use it any time you need a labelled native <input> (text, email, date, etc. via the native type prop) inside a form.",
+      "sourcePath": "src/components/Input/Input.tsx",
+      "extends": "InputHTMLAttributes<HTMLInputElement>",
+      "notes": "The label is linked to the input with htmlFor/id (auto-generated via useId if no id is passed). When error is set, the input gets aria-invalid=\"true\" plus aria-describedby pointing at the role=\"alert\" error message.",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "required": true,
+          "default": null,
+          "description": "Accessible label rendered above the input and associated via htmlFor/id. Required — no unlabeled inputs are allowed."
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "required": false,
+          "default": null,
+          "description": "Validation error message. When set, renders a role=\"alert\" message below the input and marks it aria-invalid."
+        }
+      ],
+      "example": "<Input\n  label=\"Email address\"\n  type=\"email\"\n  value={email}\n  onChange={(e) => setEmail(e.target.value)}\n  error={emailError}\n/>"
+    },
+    {
+      "name": "Modal",
+      "type": "component",
+      "category": "Overlay",
+      "description": "A focused, modal dialog rendered into document.body via a portal, used to interrupt the user with a task or piece of information that requires their attention before continuing.",
+      "sourcePath": "src/components/Modal/Modal.tsx",
+      "extends": null,
+      "notes": "Exposes role=\"dialog\", aria-modal=\"true\", and aria-labelledby pointing at the title. While open: focus moves to the dialog, Escape calls onClose, and background scrolling is locked. On close/unmount, focus is restored to the previously focused element. Focus is moved to the dialog container only — it is not trapped/cycled within the dialog's interactive children.",
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": true,
+          "default": null,
+          "description": "Whether the modal is currently visible. When false, the component renders nothing."
+        },
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "required": true,
+          "default": null,
+          "description": "Called when the user requests to close the modal (Escape key, backdrop click, or the close button)."
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": true,
+          "default": null,
+          "description": "Heading content rendered in the modal header and linked to the dialog via aria-labelledby."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "default": null,
+          "description": "Body content rendered inside the dialog."
+        }
+      ],
+      "example": "<Modal open={isOpen} onClose={() => setIsOpen(false)} title=\"Delete item\">\n  Are you sure you want to delete this item?\n</Modal>"
+    },
+    {
+      "name": "Select",
+      "type": "component",
+      "category": "User Input",
+      "description": "A native <select> dropdown with a required, associated label, an optional placeholder option, and optional inline validation error. Use it when a user must pick one value from a known, bounded list of options.",
+      "sourcePath": "src/components/Select/Select.tsx",
+      "extends": "SelectHTMLAttributes<HTMLSelectElement> (omit 'children')",
+      "notes": "The label is linked to the select with htmlFor/id (auto-generated via useId if no id is passed). When error is set, the select gets aria-invalid=\"true\" plus aria-describedby. Keyboard interaction (opening, arrow-key navigation, typeahead) is provided by the browser's native <select>.",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "required": true,
+          "default": null,
+          "description": "Accessible label rendered above the select and associated via htmlFor/id. Required — no unlabeled selects."
+        },
+        {
+          "name": "hideLabel",
+          "type": "boolean",
+          "required": false,
+          "default": null,
+          "description": "When true, visually hides the label while keeping it as the select's accessible name — use for compact contexts like a table cell."
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "required": false,
+          "default": null,
+          "description": "Validation error message. When set, renders a role=\"alert\" message below the select and marks it aria-invalid."
+        },
+        {
+          "name": "options",
+          "type": "SelectOption[]",
+          "required": true,
+          "default": null,
+          "description": "The list of selectable options, rendered in order as native <option> elements."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false,
+          "default": null,
+          "description": "Optional placeholder text shown as a disabled, hidden first option when no real option has been chosen yet."
+        }
+      ],
+      "example": "<Select\n  label=\"Country\"\n  placeholder=\"Select a country\"\n  options={[\n    { value: 'us', label: 'United States' },\n    { value: 'ca', label: 'Canada' },\n  ]}\n  value={country}\n  onChange={(e) => setCountry(e.target.value)}\n/>"
+    },
+    {
+      "name": "Spinner",
+      "type": "component",
+      "category": "Feedback",
+      "description": "An animated indicator that communicates an in-progress, indeterminate operation (e.g. data fetching or async form submission). Use it whenever content isn't ready to render yet and you need to signal that work is happening.",
+      "sourcePath": "src/components/Spinner/Spinner.tsx",
+      "extends": null,
+      "notes": "The root element uses role=\"status\" so assistive technology announces the label text as a live region update; the icon itself is purely visual.",
+      "props": [
+        {
+          "name": "size",
+          "type": "IconSize",
+          "required": false,
+          "default": "'base'",
+          "description": "Size of the spinning icon."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "default": "'Loading'",
+          "description": "Accessible label announced to screen readers via the status live region; not shown visually."
+        }
+      ],
+      "example": "<Spinner size=\"lg\" label=\"Loading results\" />"
+    },
+    {
+      "name": "Table",
+      "type": "component",
+      "category": "Data Display",
+      "description": "Renders tabular data with a horizontally-scrollable wrapper for narrow viewports. Compose it with TableHead, TableBody, TableRow, TableHeaderCell, and TableCell to build the table structure explicitly, the same way you would with plain HTML table elements.",
+      "sourcePath": "src/components/Table/Table.tsx",
+      "extends": "TableHTMLAttributes<HTMLTableElement>",
+      "notes": null,
+      "props": [],
+      "example": "<Table>\n  <TableHead>\n    <TableRow>\n      <TableHeaderCell>Name</TableHeaderCell>\n      <TableHeaderCell>Email</TableHeaderCell>\n    </TableRow>\n  </TableHead>\n  <TableBody>\n    <TableRow>\n      <TableCell>Ada Lovelace</TableCell>\n      <TableCell>ada@example.com</TableCell>\n    </TableRow>\n  </TableBody>\n</Table>"
+    },
+    {
+      "name": "TableHead",
+      "type": "component",
+      "category": "Data Display",
+      "description": "Semantic wrapper for a table's header row group (<thead>). Use it to group the TableRow/TableHeaderCell elements that make up the column headings.",
+      "sourcePath": "src/components/Table/Table.tsx",
+      "extends": "HTMLAttributes<HTMLTableSectionElement>",
+      "notes": null,
+      "props": [],
+      "example": "<TableHead>\n  <TableRow>\n    <TableHeaderCell>Name</TableHeaderCell>\n  </TableRow>\n</TableHead>"
+    },
+    {
+      "name": "TableBody",
+      "type": "component",
+      "category": "Data Display",
+      "description": "Semantic wrapper for a table's body row group (<tbody>). Use it to group the data TableRow/TableCell elements.",
+      "sourcePath": "src/components/Table/Table.tsx",
+      "extends": "HTMLAttributes<HTMLTableSectionElement>",
+      "notes": null,
+      "props": [],
+      "example": "<TableBody>\n  <TableRow>\n    <TableCell>Ada Lovelace</TableCell>\n  </TableRow>\n</TableBody>"
+    },
+    {
+      "name": "TableRow",
+      "type": "component",
+      "category": "Data Display",
+      "description": "A single row (<tr>) within a TableHead or TableBody.",
+      "sourcePath": "src/components/Table/Table.tsx",
+      "extends": "HTMLAttributes<HTMLTableRowElement>",
+      "notes": null,
+      "props": [],
+      "example": "<TableRow>\n  <TableCell>Ada Lovelace</TableCell>\n</TableRow>"
+    },
+    {
+      "name": "TableHeaderCell",
+      "type": "component",
+      "category": "Data Display",
+      "description": "A header cell (<th>) identifying a column (or row) within a TableRow.",
+      "sourcePath": "src/components/Table/Table.tsx",
+      "extends": "ThHTMLAttributes<HTMLTableCellElement>",
+      "notes": "Defaults the native scope attribute to 'col' if not provided; pass scope=\"row\" for row headers.",
+      "props": [],
+      "example": "<TableHeaderCell>Name</TableHeaderCell>"
+    },
+    {
+      "name": "TableCell",
+      "type": "component",
+      "category": "Data Display",
+      "description": "A standard data cell (<td>) within a TableRow.",
+      "sourcePath": "src/components/Table/Table.tsx",
+      "extends": "TdHTMLAttributes<HTMLTableCellElement>",
+      "notes": null,
+      "props": [],
+      "example": "<TableCell>ada@example.com</TableCell>"
+    },
+    {
+      "name": "ToastProvider",
+      "type": "component",
+      "category": "Feedback",
+      "description": "Provides the toast() API (via ToastContext) to its subtree and renders queued toasts into a portal at document.body. Wrap your application (or the relevant subtree) once near the root; descendants then call useToast() to queue notifications.",
+      "sourcePath": "src/components/Toast/Toast.tsx",
+      "extends": null,
+      "notes": "The toast viewport is rendered with aria-live=\"polite\", so assistive technology announces new toasts without stealing focus. Each toast auto-dismisses after its duration (see ToastOptions) and can also be dismissed manually via the underlying Alert's dismiss control.",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "default": null,
+          "description": "The subtree that gains access to the toast() API via useToast()."
+        }
+      ],
+      "example": "<ToastProvider>\n  <App />\n</ToastProvider>"
+    },
+    {
+      "name": "useToast",
+      "type": "hook",
+      "category": "Feedback",
+      "description": "Reads the toast API from context, giving components a toast() function to queue toast notifications. Must be called from a descendant of ToastProvider.",
+      "sourcePath": "src/components/Toast/useToast.ts",
+      "extends": null,
+      "notes": "Throws an Error if called outside of a ToastProvider.",
+      "props": [],
+      "returns": {
+        "type": "ToastContextValue",
+        "description": "An object containing the toast(options: ToastOptions) function used to queue notifications."
+      },
+      "example": "function SaveButton() {\n  const { toast } = useToast();\n  return (\n    <button onClick={() => toast({ title: 'Saved', description: 'Your changes were saved.' })}>\n      Save\n    </button>\n  );\n}"
+    }
+  ],
+  "types": [
+    {
+      "name": "AlertVariant",
+      "kind": "union",
+      "values": ["neutral", "primary", "success", "warning", "danger"],
+      "description": "Visual style of an Alert, which also determines its icon and ARIA role.",
+      "usedBy": ["Alert", "ToastOptions"]
+    },
+    {
+      "name": "BadgeVariant",
+      "kind": "union",
+      "values": ["neutral", "primary", "success", "warning", "danger"],
+      "description": "Visual style of a Badge.",
+      "usedBy": ["Badge"]
+    },
+    {
+      "name": "AvatarSize",
+      "kind": "union",
+      "values": ["sm", "base", "lg", "xl"],
+      "description": "Size of an Avatar.",
+      "usedBy": ["Avatar"]
+    },
+    {
+      "name": "IconSize",
+      "kind": "union",
+      "values": ["sm", "base", "lg", "xl"],
+      "description": "Available rendered sizes for Icon, mapped to CSS modifier classes.",
+      "usedBy": ["Icon", "Spinner"]
+    },
+    {
+      "name": "IconName",
+      "kind": "union",
+      "values": ["check", "x", "chevronDown", "alertCircle", "spinner"],
+      "description": "Names of the icons available to render via <Icon name=\"...\" />.",
+      "usedBy": ["Icon"]
+    },
+    {
+      "name": "SelectOption",
+      "kind": "interface",
+      "description": "A single choice rendered as a native <option> inside a Select.",
+      "fields": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": true,
+          "description": "Value submitted/reported for this option."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "description": "Text displayed to the user for this option."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "description": "When true, renders the option disabled so it cannot be chosen."
+        }
+      ],
+      "usedBy": ["Select"]
+    },
+    {
+      "name": "DateRangeValue",
+      "kind": "interface",
+      "description": "The current start/end selection of a DateRangePicker, as ISO date strings (YYYY-MM-DD).",
+      "fields": [
+        {
+          "name": "start",
+          "type": "string",
+          "required": true,
+          "description": "Start of the range, as an ISO date string (YYYY-MM-DD)."
+        },
+        {
+          "name": "end",
+          "type": "string",
+          "required": true,
+          "description": "End of the range, as an ISO date string (YYYY-MM-DD)."
+        }
+      ],
+      "usedBy": ["DateRangePicker"]
+    },
+    {
+      "name": "ToastOptions",
+      "kind": "interface",
+      "description": "Options passed to toast() (from useToast()) describing a single toast notification.",
+      "fields": [
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Optional heading rendered as the toast's title."
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "required": true,
+          "description": "Main message content of the toast."
+        },
+        {
+          "name": "variant",
+          "type": "AlertVariant",
+          "required": false,
+          "description": "Visual style of the toast, forwarded to the underlying Alert. Defaults to Alert's default variant ('neutral')."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "required": false,
+          "description": "Milliseconds before the toast auto-dismisses. Pass 0 to require a manual dismiss. Defaults to 5000."
+        }
+      ],
+      "usedBy": ["ToastProvider", "useToast"]
+    }
+  ]
+}

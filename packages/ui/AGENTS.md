@@ -25,6 +25,38 @@ UI library containing design tokens and components to be utilized across web app
 - New tokens are added to `tokens.ts`, then run `pnpm run token-css`.
 - When building composite or more complex components, reuse smaller atomic components within this library if applicable.
 - All components are saved in a folder of the same name containing the React component, CSS module, tests, and export file.
+- Every exported component (and hook) requires a JSDoc block directly above its declaration: a 1-2 sentence description of what it does and when to use it, an `@category` tag (`Layout`, `Feedback`, `Data Display`, `User Input`, `Overlay`, `Navigation`, or `Decorative`), and an `@example` with a realistic usage snippet in a fenced ```tsx code block. Note focus/keyboard/ARIA behavior in the description when relevant.
+- Every prop in a component's Props interface requires an inline `/** ... */` doc comment describing what it controls, valid values for unions, and its default (if destructured). Exported standalone types (variant unions, option shapes, etc.) require a one-line doc comment. Don't redocument inherited native HTML attributes — only props declared on the custom interface.
+
+Example:
+
+````tsx
+/**
+ * Displays a short, dismissible status message to draw attention to important
+ * information (success confirmations, warnings, errors, etc.). Danger-variant
+ * alerts use `role="alert"` for assertive screen-reader announcements; all
+ * other variants use `role="status"` for polite announcements.
+ *
+ * @category Feedback
+ *
+ * @example
+ * ```tsx
+ * <Alert variant="success" title="Changes saved">
+ *   Your profile has been updated.
+ * </Alert>
+ * ```
+ */
+export function Alert({ variant = 'neutral', title, children, onDismiss }: AlertProps) {
+  /* ... */
+}
+
+export interface AlertProps {
+  /** Visual style and ARIA role of the alert. Defaults to `'neutral'`. */
+  variant?: AlertVariant;
+  /** Called when the user clicks the dismiss button. If omitted, no dismiss button is rendered. */
+  onDismiss?: () => void;
+}
+````
 
 ## Accessibility
 
