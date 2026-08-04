@@ -2,5 +2,6 @@ packages:
   - 'packages/*'
   - 'website'
 allowBuilds:
+  '@modelcontextprotocol/inspector': false
   '@swc/core': false
   esbuild: true

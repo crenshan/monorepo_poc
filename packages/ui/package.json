@@ -8,13 +8,12 @@
     "./tokens.css": "./src/tokens.css"
   },
   "scripts": {
-    "dev": "vite",
     "test": "vitest run",
     "token-css": "tsx scripts/generate-token-css.ts",
-    "build": "npm run token-css && tsc -b && vite build",
+    "tokens-json": "tsx scripts/generate-tokens-json.ts",
+    "build": "npm run token-css && npm run tokens-json && tsc -b",
     "lint": "eslint .",
-    "typecheck": "tsc -b --noEmit",
-    "preview": "vite preview"
+    "typecheck": "tsc -b --noEmit"
   },
   "peerDependencies": {
     "react": "^19.2.7",

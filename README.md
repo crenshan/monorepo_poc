@@ -51,5 +51,5 @@ This repo uses [pnpm workspaces](https://pnpm.io/workspaces) (configured in `pnp
 `@mono/ui`'s design tokens (`packages/ui/src/tokens.ts`) are the single source of truth for colors, spacing, type, and radius. They're consumed three ways from the same data:
 
 1. Directly in TypeScript (`tokens`, `flatTokens`) for anything that needs the raw values.
-2. As CSS custom properties (`packages/ui/src/tokens.css`, regenerated via `pnpm token-css`) — every component's CSS reads from these variables, never a raw hex or px value.
+2. As CSS custom properties (`packages/ui/src/tokens.css`, regenerated via `pnpm token-css`) — component CSS reads spacing, color, typography, and radii from these variables. Raw values are still fine for layout mechanics (percentages, viewport units, `fr`, `flex`, container max-widths, 1px borders).
 3. Any consuming app imports `@mono/ui/tokens.css` once (see `website/src/App.tsx`) to get the CSS variables on `:root`.

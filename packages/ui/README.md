@@ -27,7 +27,7 @@ import '@mono/ui/tokens.css';
 
 ## Design tokens
 
-`src/tokens.ts` is the single source of truth for colors (full `red`/`blue`/`green`/`amber`/`gray` 100–900 scales, plus semantic aliases like `primary`/`danger`/`text`), spacing, font size/weight, and radius. Every component's CSS reads exclusively from these — no raw hex or px values.
+`src/tokens.ts` is the single source of truth for colors (full `red`/`blue`/`green`/`amber`/`gray` 100–900 scales, plus semantic aliases like `primary`/`danger`/`text`), spacing, font size/weight, and radius. Component CSS reads spacing, color, typography, and radii from these — raw values are still fine for layout mechanics (percentages, viewport units, `fr`, `flex`, container max-widths, 1px borders).
 
 - `pnpm token-css` regenerates `src/tokens.css` (a `:root` block of CSS custom properties) from `tokens.ts`. Run it after changing `tokens.ts`.
 - Consumers import `@mono/ui/tokens.css` once, at the app root, to get the variables.

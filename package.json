@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm --filter website dev",
-    "token-css": "pnpm --filter ui token-css",
+    "tokens": "pnpm --filter ui build",
+    "mcp": "pnpm --filter ds-mcp dev",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r exec eslint . --fix",
     "lint:css": "stylelint \"**/*.css\"",

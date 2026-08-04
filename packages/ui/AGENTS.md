@@ -21,8 +21,8 @@ UI library containing design tokens and components to be utilized across web app
 
 ## Hard Boundaries
 
-- All CSS values use `var(--*)` tokens. Token names follow `--{group}-{key}` — read `src/tokens.ts` for the available set. Never invent names.
-- New tokens are added to `tokens.ts`, then run `pnpm run token-css`.
+- Use `var(--*)` tokens (`--{group}-{key}` — read `src/tokens.ts` for the available set, never invent names) for spacing, color, typography, and radii. Raw values are acceptable for layout mechanics (percentages, viewport units, `fr`, `flex`, container max-widths, 1px borders).
+- If a spacing or size value is a design decision rather than layout mechanics and doesn't map to an existing token, add a token to `tokens.ts` rather than hardcoding it, then run `pnpm run token-css`.
 - When building composite or more complex components, reuse smaller atomic components within this library if applicable.
 - All components are saved in a folder of the same name containing the React component, CSS module, tests, and export file.
 - Every exported component (and hook) requires a JSDoc block directly above its declaration: a 1-2 sentence description of what it does and when to use it, an `@category` tag (`Layout`, `Feedback`, `Data Display`, `User Input`, `Overlay`, `Navigation`, or `Decorative`), and an `@example` with a realistic usage snippet in a fenced ```tsx code block. Note focus/keyboard/ARIA behavior in the description when relevant.

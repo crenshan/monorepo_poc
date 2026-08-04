@@ -1,5 +1,6 @@
-/* Every value here references a token variable — no raw hex or px.
-   That's the rule the CI compliance agent enforces. */
+/* Spacing, color, typography, and radii here use tokens (--space-*, --color-*,
+   --fontSize-*, --radius-*). Raw values are fine for layout mechanics (1px borders,
+   percentages, etc.) — see packages/ui/AGENTS.md. */
 .ds-spinner {
   display: inline-flex;
 }

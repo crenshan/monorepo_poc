@@ -17,10 +17,16 @@ When invoked:
 
 Check for:
 
-- **Hardcoded values.** Any raw px, hex, or rem in view CSS where a token
-  exists. Spacing must use `--space-*`, color `--color-*`, typography
-  `--fontSize-*`/`--fontWeight-*`, radius `--radius-*`. Full list of token
-  variables can be found in `/packages/ui/src/tokens.css`.
+- **Hardcoded design values.** Raw px, hex, or rem for spacing, color,
+  typography, or radii where a token exists. Spacing must use `--space-*`,
+  color `--color-*`, typography `--fontSize-*`/`--fontWeight-*`, radius
+  `--radius-*`. Full list of token variables can be found in
+  `/packages/ui/src/tokens.css`. Do NOT flag raw values used for layout
+  mechanics (percentages, viewport units, `fr`, `flex`, container
+  max-widths, 1px borders) — those are acceptable. If a spacing/size value
+  is a design decision without a matching token, the fix is a new token in
+  `tokens.ts`, not a hardcoded value — flag it as needing a token, not as a
+  bare violation.
 - **Deprecated tokens.** Variables from `website/src/index.css`
   (`--text`, `--border`, `--text-h`) are deprecated. New code must use
   `@mono/ui` tokens.
