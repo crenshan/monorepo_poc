@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,4 +22,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - run: pnpm lint
+      - run: pnpm lint:css
+      - run: pnpm format:check
+      - run: pnpm typecheck
       - run: pnpm test:all
