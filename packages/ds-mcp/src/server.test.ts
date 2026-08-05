@@ -267,3 +267,34 @@ describe('search_usage_examples', () => {
     expect(textOf(result)).toContain('Call list_components');
   });
 });
+
+describe('design-tokens resource', () => {
+  test('returns tokens as a flat JSON array of key/value/cssVar', async () => {
+    const client = await connectedClient();
+    const result = await client.readResource({ uri: 'ds://tokens' });
+    const [content] = result.contents as { text: string; mimeType?: string }[];
+
+    expect(content.mimeType).toBe('application/json');
+    expect(JSON.parse(content.text)).toEqual([
+      { key: 'color.primary', value: '#0b5fff', cssVar: '--color-primary' },
+      { key: 'space.md', value: '16px', cssVar: '--space-md' },
+    ]);
+  });
+});
+
+describe('new-view prompt', () => {
+  test('embeds the requested description into the scaffold instructions', async () => {
+    const client = await connectedClient();
+    const result = await client.getPrompt({
+      name: 'new-view',
+      arguments: { description: 'A view that lists pending approvals.' },
+    });
+    const [message] = result.messages;
+    const text = (message.content as { type: 'text'; text: string }).text;
+
+    expect(message.role).toBe('user');
+    expect(text).toContain('A view that lists pending approvals.');
+    expect(text).toContain('Call search_usage_examples');
+    expect(text).toContain('Use only @mono/ui components');
+  });
+});

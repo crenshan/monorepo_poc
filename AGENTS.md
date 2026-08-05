@@ -8,7 +8,8 @@ Proof of Concept illustrating the use of a monorepo for a central application as
 .
 ├── packages/
 │ ├── ui/       — shared design system (components + tokens)
-│ └── utils/    — shared utilities
+│ ├── utils/    — shared utilities
+│ └── ds-mcp/   — MCP server exposing the design system to AI agents
 └── website/    — the consuming app
 ```
 
