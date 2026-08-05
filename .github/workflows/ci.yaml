@@ -26,7 +26,6 @@ jobs:
       # tokens.ts (see root AGENTS.md's Hard Boundaries). Regenerate and fail if
       # that leaves a diff, so a stale commit of either can't merge.
       - run: pnpm --filter ui build
-      - run: pnpm exec prettier --write packages/ui/tokens.json
       - run: git diff --exit-code
 
       - run: pnpm lint

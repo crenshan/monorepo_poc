@@ -6,7 +6,9 @@ UI library containing design tokens and components to be utilized across web app
 
 ```txt
  .
-├── scripts/                    — build tooling (tokens.css generator)
+├── scripts/                    — build tooling (tokens.css + tokens.json generators)
+├── components.json             — component/prop manifest read by ds-mcp (hand-maintained — keep in sync with JSDoc)
+├── tokens.json                 — flat token manifest read by ds-mcp (generated, see tokens.ts)
 └── src/                        — components and tokens
     ├── components/                 — all components
     │   ├── Example/                   — `Example` component directory
@@ -22,7 +24,8 @@ UI library containing design tokens and components to be utilized across web app
 ## Hard Boundaries
 
 - Use `var(--*)` tokens (`--{group}-{key}` — read `src/tokens.ts` for the available set, never invent names) for spacing, color, typography, and radii. Raw values are acceptable for layout mechanics (percentages, viewport units, `fr`, `flex`, container max-widths, 1px borders).
-- If a spacing or size value is a design decision rather than layout mechanics and doesn't map to an existing token, add a token to `tokens.ts` rather than hardcoding it, then run `pnpm run token-css`.
+- If a spacing or size value is a design decision rather than layout mechanics and doesn't map to an existing token, add a token to `tokens.ts` rather than hardcoding it, then run `pnpm run tokens` (from the repo root) to regenerate both `tokens.css` and `tokens.json`. CI regenerates and diffs both — a stale commit of either fails the build.
+- `components.json` is hand-maintained, not generated — when you add/change a component's props, update its entry here too. Nothing regenerates or diffs it, so a manual edit is the only thing keeping it in sync with the actual props.
 - When building composite or more complex components, reuse smaller atomic components within this library if applicable.
 - All components are saved in a folder of the same name containing the React component, CSS module, tests, and export file.
 - Every exported component (and hook) requires a JSDoc block directly above its declaration: a 1-2 sentence description of what it does and when to use it, an `@category` tag (`Layout`, `Feedback`, `Data Display`, `User Input`, `Overlay`, `Navigation`, or `Decorative`), and an `@example` with a realistic usage snippet in a fenced ```tsx code block. Note focus/keyboard/ARIA behavior in the description when relevant.
