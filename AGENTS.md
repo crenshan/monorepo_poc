@@ -15,14 +15,14 @@ Proof of Concept illustrating the use of a monorepo for a central application as
 
 ## Hard Boundaries
 
-- Never edit `packages/ui/src/tokens.css`. It's generated from `tokens.ts`, which is the single source of truth. After editing tokens, run `pnpm run token-css`.
+- Never edit `packages/ui/src/tokens.css` or `packages/ui/tokens.json`. Both are generated from `tokens.ts`, which is the single source of truth. After editing tokens, run `pnpm run tokens`.
 - New UI primitives go in `packages/ui`, never in `website/`.
 - Don't add dependencies without asking.
 
 ## Dev environment tips
 
 - Use `pnpm --filter website dev` to run the "website" app locally
-- Use `pnpm run token-css` to regenerate the `tokens.css` after editing `tokens.ts`
+- Use `pnpm run tokens` to regenerate `tokens.css` and `tokens.json` after editing `tokens.ts`
 
 ## Testing instructions
 

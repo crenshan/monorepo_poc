@@ -1,4 +1,11 @@
 {
+  // Deliberately does not extend ../../tsconfig.base.json: that config is
+  // noEmit: true and bundler-mode (allowImportingTsExtensions, moduleResolution:
+  // "bundler") for the source-only packages, where Vite/tsx does the real
+  // execution and tsc only typechecks. This package's `tsc` build is the actual
+  // runtime artifact (dist/index.js, run via `node`), which needs real Node16
+  // emit — incompatible with the base config's assumptions. The "Linting" block
+  // below mirrors the base config's non-emit-related strictness flags by hand.
   "compilerOptions": {
     "target": "ES2022",
     "module": "Node16",
@@ -9,7 +16,13 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"]
+    "types": ["node"],
+
+    /* Linting (mirrors tsconfig.base.json) */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

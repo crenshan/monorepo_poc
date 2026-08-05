@@ -22,6 +22,13 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # packages/ui/src/tokens.css and packages/ui/tokens.json are generated from
+      # tokens.ts (see root AGENTS.md's Hard Boundaries). Regenerate and fail if
+      # that leaves a diff, so a stale commit of either can't merge.
+      - run: pnpm --filter ui build
+      - run: pnpm exec prettier --write packages/ui/tokens.json
+      - run: git diff --exit-code
+
       - run: pnpm lint
       - run: pnpm lint:css
       - run: pnpm format:check

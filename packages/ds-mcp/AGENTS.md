@@ -7,9 +7,9 @@ MCP server that exposes `@mono/ui`'s components and tokens to AI agents (list/se
 ```txt
  .
 └── src/
-    ├── index.ts          — thin entrypoint: builds the server and connects it to stdio
+    ├── index.ts           — thin entrypoint: builds the server and connects it to stdio
     ├── server.ts          — createServer(): registers every tool, resource, and prompt
-    ├── server.test.ts      — tests for server.ts, run through a real MCP client
+    ├── server.test.ts     — tests for server.ts, run through a real MCP client
     ├── examples.ts        — curated usage snippets served by search_usage_examples
     ├── manifest-types.ts  — types for ../ui/components.json
     └── token-types.ts     — types for ../ui/tokens.json
