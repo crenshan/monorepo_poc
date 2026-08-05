@@ -10,7 +10,7 @@
   "scripts": {
     "test": "vitest run",
     "token-css": "tsx scripts/generate-token-css.ts",
-    "tokens-json": "tsx scripts/generate-tokens-json.ts",
+    "tokens-json": "tsx scripts/generate-tokens-json.ts && prettier --write tokens.json",
     "build": "npm run token-css && npm run tokens-json && tsc -b",
     "lint": "eslint .",
     "typecheck": "tsc -b --noEmit"

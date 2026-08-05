@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # packages/ui/src/tokens.css and packages/ui/tokens.json are generated from
+      # tokens.ts (see root AGENTS.md's Hard Boundaries). Regenerate and fail if
+      # that leaves a diff, so a stale commit of either can't merge.
+      - run: pnpm --filter ui build
+      - run: git diff --exit-code
+
+      - run: pnpm lint
+      - run: pnpm lint:css
+      - run: pnpm format:check
+      - run: pnpm typecheck
+      - run: pnpm test:all

@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.lint.json",
   "compilerOptions": {
     "target": "es2023",
     "skipLibCheck": true,
@@ -7,12 +8,6 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    "noEmit": true,
-
-    /* Linting */
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noEmit": true
   }
 }

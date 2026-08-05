@@ -1,4 +1,13 @@
 {
+  // Deliberately does not extend ../../tsconfig.base.json: that config is
+  // noEmit: true and bundler-mode (allowImportingTsExtensions, moduleResolution:
+  // "bundler") for the source-only packages, where Vite/tsx does the real
+  // execution and tsc only typechecks. This package's `tsc` build is the actual
+  // runtime artifact (dist/index.js, run via `node`), which needs real Node16
+  // emit — incompatible with the base config's assumptions. It does extend
+  // tsconfig.lint.json (the same non-emit strictness flags tsconfig.base.json
+  // extends), so this package can't silently drift if those flags change.
+  "extends": "../../tsconfig.lint.json",
   "compilerOptions": {
     "target": "ES2022",
     "module": "Node16",

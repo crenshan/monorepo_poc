@@ -13,4 +13,4 @@ Demo web app used for the purpose of illustrating the use of library dependencie
 - Always check the @mono/ui barrel export before writing new markup. If a primitive exists, use it.
 - If a needed primitive doesn't exist in @mono/ui, stop and ask — don't build it locally.
 - Never introduce raw semantic markup for a UI primitive (tables, dialogs, menus, form controls) in website/, even if similar markup exists elsewhere. Stop and ask.
-- Views live in src/views/, one folder each (.tsx + .css).
+- Views live in src/views/ as a flat file pair each: ViewName.tsx + ViewName.css (e.g. LoginView.tsx + LoginView.css) — not a subfolder per view.
