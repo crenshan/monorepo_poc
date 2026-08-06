@@ -18,10 +18,6 @@ export interface SpinnerProps {
  * whenever content isn't ready to render yet and you need to signal that
  * work is happening.
  *
- * The root element uses `role="status"` so assistive technology announces
- * the `label` text as a live region update; the icon itself is purely
- * visual.
- *
  * @category Feedback
  *
  * @example

@@ -43,17 +43,6 @@ export interface DateRangePickerProps {
  * pick a bounded date range (e.g. filtering a report by date). The component is
  * controlled: it always reflects `value` and reports changes via `onChange`.
  *
- * Each field's bounds constrain the other to keep the range valid — the start
- * field's `max` is the selected end date (or the `max` prop), and the end field's
- * `min` is the selected start date (or the `min` prop).
- *
- * Accessibility: the two fields render as an `<fieldset>`/`<legend>` group so
- * screen readers announce them as related, each field keeps its own
- * label/`aria-invalid`/`aria-describedby` wiring via {@link Input}, and when
- * `error` is set the fieldset itself gets `aria-describedby` pointing at a
- * `role="alert"` error message. Date entry/keyboard interaction is provided by
- * the browser's native `<input type="date">`.
- *
  * @category User Input
  *
  * @example

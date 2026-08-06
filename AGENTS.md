@@ -22,7 +22,7 @@ Proof of Concept illustrating the use of a monorepo for a central application as
 ## Dev environment tips
 
 - Use `pnpm --filter website dev` to run the "website" app locally
-- Use `pnpm run tokens` to regenerate `tokens.css` and `tokens.json` after editing `tokens.ts`
+- Use `pnpm run tokens` to regenerate `tokens.css` and `generated/tokens.json` after editing `tokens.ts` — it also regenerates `generated/components.json` from component/hook source as part of the same build
 
 ## Testing instructions
 

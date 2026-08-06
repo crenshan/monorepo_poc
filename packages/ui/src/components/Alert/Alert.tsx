@@ -30,9 +30,7 @@ export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'
  * Displays a short, dismissible status message to draw attention to important
  * information (success confirmations, warnings, errors, etc.). Reach for it when
  * you need to surface feedback about the result of an action or the current state
- * of the page. Danger-variant alerts use `role="alert"` for assertive
- * screen-reader announcements; all other variants use `role="status"` for polite
- * announcements.
+ * of the page.
  *
  * @category Feedback
  *

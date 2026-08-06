@@ -37,10 +37,7 @@ function getInitials(name: string): string {
 /**
  * Displays a person's picture, or their initials as a fallback when no image is
  * provided or the image fails to load. Reach for it when representing a user or
- * account in lists, headers, or comments. By default the avatar exposes the
- * person's name to assistive tech (`role="img"` with `aria-label`, or image
- * `alt` text); set `decorative` when nearby visible text already names the
- * person, to avoid the name being announced twice.
+ * account in lists, headers, or comments.
  *
  * @category Data Display
  *

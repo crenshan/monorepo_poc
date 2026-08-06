@@ -9,9 +9,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 /**
  * A clickable button styled to match the design system, for triggering actions
- * such as submitting a form or opening a dialog. All standard button HTML
- * attributes (`onClick`, `disabled`, `type`, etc.) are supported and passed
- * through to the underlying `<button>` element.
+ * such as submitting a form or opening a dialog.
  *
  * @category User Input
  *
