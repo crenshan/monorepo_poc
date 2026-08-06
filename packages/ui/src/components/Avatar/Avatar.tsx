@@ -48,6 +48,11 @@ function getInitials(name: string): string {
  * ```tsx
  * <Avatar name="Ada Lovelace" src="/avatars/ada.jpg" size="lg" />
  * ```
+ *
+ * @remarks
+ * By default the avatar exposes the person's name to assistive tech (`role="img"` with
+ * `aria-label`, or image `alt` text); set `decorative` when nearby visible text already
+ * names the person, to avoid the name being announced twice.
  */
 export function Avatar({
   name,

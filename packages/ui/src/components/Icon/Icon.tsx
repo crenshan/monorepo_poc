@@ -33,10 +33,11 @@ export interface IconProps extends Omit<SVGAttributes<SVGSVGElement>, 'name'> {
  * <Icon name="check" size="sm" />
  * ```
  *
- * Accessibility: by default the icon is purely decorative (`aria-hidden="true"`) since
- * it has no accessible name. Pass `title` to expose it to assistive technology as a
- * named image (`role="img"` with an SVG `<title>`) — do this when the icon conveys
- * meaning that isn't otherwise available as text nearby (e.g. an icon-only button).
+ * @remarks
+ * By default the icon is purely decorative (`aria-hidden="true"`) since it has no
+ * accessible name. Pass `title` to expose it to assistive technology as a named image
+ * (`role="img"` with an SVG `<title>`) — do this when the icon conveys meaning that
+ * isn't otherwise available as text nearby (e.g. an icon-only button).
  */
 export function Icon({ name, size = 'base', title, className, ...props }: IconProps) {
   const classes = [styles['ds-icon'], styles[`ds-icon--${size}`], className]

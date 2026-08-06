@@ -21,6 +21,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  *   Save changes
  * </Button>
  * ```
+ *
+ * @remarks
+ * All standard button HTML attributes (`onClick`, `disabled`, `type`, etc.) are
+ * supported and passed through to the underlying `<button>` element.
  */
 export function Button({ children, ...props }: ButtonProps) {
   return (

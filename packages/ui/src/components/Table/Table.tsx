@@ -136,6 +136,10 @@ export interface TableHeaderCellProps extends ThHTMLAttributes<HTMLTableCellElem
  * ```tsx
  * <TableHeaderCell>Name</TableHeaderCell>
  * ```
+ *
+ * @remarks
+ * Defaults the native `scope` attribute to `'col'` if not provided; pass
+ * `scope="row"` for row headers.
  */
 export function TableHeaderCell({
   className,

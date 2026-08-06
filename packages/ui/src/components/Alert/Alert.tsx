@@ -42,6 +42,10 @@ export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'
  *   Your profile has been updated.
  * </Alert>
  * ```
+ *
+ * @remarks
+ * Danger-variant alerts use `role="alert"` for assertive screen-reader announcements;
+ * all other variants use `role="status"` for polite announcements.
  */
 export function Alert({
   variant = 'neutral',

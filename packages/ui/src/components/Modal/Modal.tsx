@@ -29,12 +29,13 @@ export interface ModalProps {
  * </Modal>
  * ```
  *
- * Accessibility: the dialog exposes `role="dialog"`, `aria-modal="true"`, and
- * `aria-labelledby` pointing at the title. While open, focus moves to the dialog, the
- * Escape key calls `onClose`, and background scrolling is locked by setting
- * `document.body.style.overflow`. On close/unmount, focus is restored to whatever
- * element was focused before the modal opened. Note that focus is moved to the dialog
- * container only — focus is not trapped/cycled within the dialog's interactive children.
+ * @remarks
+ * The dialog exposes `role="dialog"`, `aria-modal="true"`, and `aria-labelledby`
+ * pointing at the title. While open, focus moves to the dialog, the Escape key calls
+ * `onClose`, and background scrolling is locked by setting `document.body.style.overflow`.
+ * On close/unmount, focus is restored to whatever element was focused before the modal
+ * opened. Note that focus is moved to the dialog container only — focus is not
+ * trapped/cycled within the dialog's interactive children.
  */
 export function Modal({ open, onClose, title, children }: ModalProps) {
   const titleId = useId();

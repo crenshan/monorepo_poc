@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 
 import type { AlertVariant } from '../Alert';
 
+/** Options passed to `toast()` (from {@link useToast}) describing a single toast notification. */
 export interface ToastOptions {
   /** Optional heading rendered as the toast's title. */
   title?: ReactNode;
@@ -14,6 +15,7 @@ export interface ToastOptions {
   duration?: number;
 }
 
+/** The value returned by {@link useToast} — currently just the `toast()` function. */
 export interface ToastContextValue {
   /** Queues a new toast with the given options. Resolves immediately; the toast is dismissed automatically after `duration` ms (or manually if `duration` is 0). */
   toast: (options: ToastOptions) => void;

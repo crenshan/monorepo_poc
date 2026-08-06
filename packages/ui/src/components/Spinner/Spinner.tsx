@@ -28,6 +28,10 @@ export interface SpinnerProps {
  * ```tsx
  * <Spinner size="lg" label="Loading results" />
  * ```
+ *
+ * @remarks
+ * The root element uses `role="status"` so assistive technology announces the `label`
+ * text as a live region update; the icon itself is purely visual.
  */
 export function Spinner({ size = 'base', label = 'Loading' }: SpinnerProps) {
   return (

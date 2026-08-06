@@ -37,6 +37,12 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
  *   error={emailError}
  * />
  * ```
+ *
+ * @remarks
+ * The label is linked to the input with `htmlFor`/`id` (an id is auto-generated via
+ * `useId` if none is passed), and when `error` is set the input gets
+ * `aria-invalid="true"` plus `aria-describedby` pointing at the error message, which is
+ * itself rendered with `role="alert"`.
  */
 export function Input({ label, error, id, ...props }: InputProps) {
   const generatedId = useId();

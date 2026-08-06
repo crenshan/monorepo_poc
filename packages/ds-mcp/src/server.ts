@@ -8,8 +8,8 @@ import { TokensManifest } from './token-types.js';
 import { examples } from './examples.js';
 
 const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const COMPONENTS_MANIFEST = join(PROJECT_ROOT, '..', 'ui', 'components.json');
-const TOKENS_MANIFEST = join(PROJECT_ROOT, '..', 'ui', 'tokens.json');
+const COMPONENTS_MANIFEST = join(PROJECT_ROOT, '..', 'ui', 'generated', 'components.json');
+const TOKENS_MANIFEST = join(PROJECT_ROOT, '..', 'ui', 'generated', 'tokens.json');
 
 const EMPTY_MANIFEST = {
   package: '',

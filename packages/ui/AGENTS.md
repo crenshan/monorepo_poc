@@ -6,9 +6,10 @@ UI library containing design tokens and components to be utilized across web app
 
 ```txt
  .
-├── scripts/                    — build tooling (tokens.css + tokens.json generators)
-├── components.json             — component/prop manifest read by ds-mcp (hand-maintained — keep in sync with JSDoc)
-├── tokens.json                 — flat token manifest read by ds-mcp (generated, see tokens.ts)
+├── scripts/                    — build tooling (tokens.css + tokens.json + components.json generators)
+├── generated/                  — build artifacts read by ds-mcp; never hand-edit, see Hard Boundaries
+│   ├── components.json             — component/prop manifest (generated, see JSDoc requirements below)
+│   └── tokens.json                 — flat token manifest (generated, see tokens.ts)
 └── src/                        — components and tokens
     ├── components/                 — all components
     │   ├── Example/                   — `Example` component directory
@@ -24,21 +25,19 @@ UI library containing design tokens and components to be utilized across web app
 ## Hard Boundaries
 
 - Use `var(--*)` tokens (`--{group}-{key}` — read `src/tokens.ts` for the available set, never invent names) for spacing, color, typography, and radii. Raw values are acceptable for layout mechanics (percentages, viewport units, `fr`, `flex`, container max-widths, 1px borders).
-- If a spacing or size value is a design decision rather than layout mechanics and doesn't map to an existing token, add a token to `tokens.ts` rather than hardcoding it, then run `pnpm run tokens` (from the repo root) to regenerate both `tokens.css` and `tokens.json`. CI regenerates and diffs both — a stale commit of either fails the build.
-- `components.json` is hand-maintained, not generated — when you add/change a component's props, update its entry here too. Nothing regenerates or diffs it, so a manual edit is the only thing keeping it in sync with the actual props.
+- If a spacing or size value is a design decision rather than layout mechanics and doesn't map to an existing token, add a token to `tokens.ts` rather than hardcoding it, then run `pnpm run tokens` (from the repo root) to regenerate both `tokens.css` and `generated/tokens.json`. CI regenerates and diffs both — a stale commit of either fails the build.
+- `generated/components.json` is generated from component/hook source via ts-morph (`scripts/generate-components-json.ts`) — never hand-edit it. Run `pnpm run tokens` (from the repo root) to regenerate after changing a component; CI regenerates and diffs it, so a stale commit fails the build. A component/hook is picked up automatically (exported, PascalCase name, JSX in its body — or `use[A-Z]...` for a hook); the generator then requires `@category`/`@example` on it and throws a build error naming the file if either is missing, so a documentation gap fails loudly instead of silently omitting the entry.
 - When building composite or more complex components, reuse smaller atomic components within this library if applicable.
 - All components are saved in a folder of the same name containing the React component, CSS module, tests, and export file.
-- Every exported component (and hook) requires a JSDoc block directly above its declaration: a 1-2 sentence description of what it does and when to use it, an `@category` tag (`Layout`, `Feedback`, `Data Display`, `User Input`, `Overlay`, `Navigation`, or `Decorative`), and an `@example` with a realistic usage snippet in a fenced ```tsx code block. Note focus/keyboard/ARIA behavior in the description when relevant.
-- Every prop in a component's Props interface requires an inline `/** ... */` doc comment describing what it controls, valid values for unions, and its default (if destructured). Exported standalone types (variant unions, option shapes, etc.) require a one-line doc comment. Don't redocument inherited native HTML attributes — only props declared on the custom interface.
+- Every exported component (and hook) requires a JSDoc block directly above its declaration: a 1-2 sentence description of what it does and when to use it, an `@category` tag (`Layout`, `Feedback`, `Data Display`, `User Input`, `Overlay`, `Navigation`, or `Decorative`), and an `@example` with a realistic usage snippet in a fenced ```tsx code block. Both tags are required by the `components.json` generator — a missing one fails the build. Put any accessibility/behavior asides (focus management, ARIA wiring, "throws" conditions) in an `@remarks` tag (and/or `@throws` for hooks) placed after `@example` — these feed the manifest's `notes` field. Don't leave such prose dangling after `@example` in the comment with no tag of its own; JSDoc treats it as part of `@example`'s text.
+- Every prop in a component's Props interface requires an inline `/** ... */` doc comment describing what it controls, valid values for unions, and its default (if destructured). Exported standalone types (variant unions, option shapes, etc.) require a one-line doc comment. Don't redocument inherited native HTML attributes — only props declared on the custom interface. A component's parameter must be typed via a named interface (or a bare external type like `TableHTMLAttributes<...>`) — never an inline type literal — since the generator resolves props from the actual parameter type, not a guessed `{Name}Props` name.
 
 Example:
 
 ````tsx
 /**
  * Displays a short, dismissible status message to draw attention to important
- * information (success confirmations, warnings, errors, etc.). Danger-variant
- * alerts use `role="alert"` for assertive screen-reader announcements; all
- * other variants use `role="status"` for polite announcements.
+ * information (success confirmations, warnings, errors, etc.).
  *
  * @category Feedback
  *
@@ -48,6 +47,10 @@ Example:
  *   Your profile has been updated.
  * </Alert>
  * ```
+ *
+ * @remarks
+ * Danger-variant alerts use `role="alert"` for assertive screen-reader announcements;
+ * all other variants use `role="status"` for polite announcements.
  */
 export function Alert({ variant = 'neutral', title, children, onDismiss }: AlertProps) {
   /* ... */
