@@ -139,10 +139,10 @@
       "name": "Card",
       "type": "component",
       "category": "Layout",
-      "description": "A container that groups related content in a bordered, padded surface. Reach for it when laying out discrete blocks of content (list items, summary panels, dashboard tiles, etc.) that should read as a single unit. All standard `<div>` HTML attributes are supported and passed through to the underlying element.",
+      "description": "A container that groups related content in a bordered, padded surface. Reach for it when laying out discrete blocks of content (list items, summary panels, dashboard tiles, etc.) that should read as a single unit.",
       "sourcePath": "src/components/Card/Card.tsx",
       "extends": "HTMLAttributes<HTMLDivElement>",
-      "notes": null,
+      "notes": "All standard `<div>` HTML attributes are supported and passed through to the underlying element.",
       "props": [
         {
           "name": "children",
@@ -158,10 +158,10 @@
       "name": "DateRangePicker",
       "type": "component",
       "category": "User Input",
-      "description": "A paired start/end date selector, rendered as a `<fieldset>` containing two Input fields of type `date`. Reach for this whenever a user needs to pick a bounded date range (e.g. filtering a report by date). The component is controlled: it always reflects `value` and reports changes via `onChange`.",
+      "description": "A paired start/end date selector, rendered as a `<fieldset>` containing two Input fields of type `date`. Reach for this whenever a user needs to pick a bounded date range (e.g. filtering a report by date).",
       "sourcePath": "src/components/DateRangePicker/DateRangePicker.tsx",
       "extends": null,
-      "notes": "Each field's bounds constrain the other to keep the range valid — the start field's `max` is the selected end date (or the `max` prop), and the end field's `min` is the selected start date (or the `min` prop). The two fields render as an `<fieldset>`/`<legend>` group so screen readers announce them as related, each field keeps its own label/`aria-invalid`/`aria-describedby` wiring via Input, and when `error` is set the fieldset itself gets `aria-describedby` pointing at a `role=\"alert\"` error message. Date entry/keyboard interaction is provided by the browser's native `<input type=\"date\">`.",
+      "notes": "The component is controlled: it always reflects `value` and reports changes via `onChange`. Each field's bounds constrain the other to keep the range valid — the start field's `max` is the selected end date (or the `max` prop), and the end field's `min` is the selected start date (or the `min` prop). The two fields render as an `<fieldset>`/`<legend>` group so screen readers announce them as related, each field keeps its own label/`aria-invalid`/`aria-describedby` wiring via Input, and when `error` is set the fieldset itself gets `aria-describedby` pointing at a `role=\"alert\"` error message. Date entry/keyboard interaction is provided by the browser's native `<input type=\"date\">`.",
       "props": [
         {
           "name": "label",

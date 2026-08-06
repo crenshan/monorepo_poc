@@ -11,8 +11,6 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
  * A container that groups related content in a bordered, padded surface.
  * Reach for it when laying out discrete blocks of content (list items,
  * summary panels, dashboard tiles, etc.) that should read as a single unit.
- * All standard `<div>` HTML attributes are supported and passed through to
- * the underlying element.
  *
  * @category Layout
  *
@@ -23,6 +21,10 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
  *   <p>You have 3 pending invoices.</p>
  * </Card>
  * ```
+ *
+ * @remarks
+ * All standard `<div>` HTML attributes are supported and passed through to the
+ * underlying element.
  */
 export function Card({ children, ...props }: CardProps) {
   return (
