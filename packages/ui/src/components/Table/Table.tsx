@@ -37,7 +37,7 @@ export interface TableProps extends TableHTMLAttributes<HTMLTableElement> {}
  * </Table>
  * ```
  */
-export function Table({ className, children, ...props }: TableHTMLAttributes<HTMLTableElement>) {
+export function Table({ className, children, ...props }: TableProps) {
   const classes = [styles['ds-table'], className].filter(Boolean).join(' ');
 
   return (
@@ -136,6 +136,10 @@ export interface TableHeaderCellProps extends ThHTMLAttributes<HTMLTableCellElem
  * ```tsx
  * <TableHeaderCell>Name</TableHeaderCell>
  * ```
+ *
+ * @remarks
+ * Defaults the native `scope` attribute to `'col'` if not provided; pass
+ * `scope="row"` for row headers.
  */
 export function TableHeaderCell({
   className,

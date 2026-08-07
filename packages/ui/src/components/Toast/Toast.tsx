@@ -13,6 +13,11 @@ interface ToastItem extends ToastOptions {
 
 const DEFAULT_DURATION = 5000;
 
+export interface ToastProviderProps {
+  /** The subtree that gains access to the `toast()` API via `useToast()`. */
+  children: ReactNode;
+}
+
 /**
  * Provides the `toast()` API (via {@link ToastContext}) to its subtree and renders the
  * queued toasts into a portal at `document.body`. Wrap your application (or the relevant
@@ -27,12 +32,13 @@ const DEFAULT_DURATION = 5000;
  * </ToastProvider>
  * ```
  *
- * Accessibility: the toast viewport is rendered with `aria-live="polite"`, so assistive
- * technology announces new toasts without stealing focus. Each toast auto-dismisses after
- * its `duration` (see {@link ToastOptions}) and can also be dismissed manually via the
+ * @remarks
+ * The toast viewport is rendered with `aria-live="polite"`, so assistive technology
+ * announces new toasts without stealing focus. Each toast auto-dismisses after its
+ * `duration` (see {@link ToastOptions}) and can also be dismissed manually via the
  * underlying `Alert`'s dismiss control.
  */
-export function ToastProvider({ children }: { children: ReactNode }) {
+export function ToastProvider({ children }: ToastProviderProps) {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
   const nextId = useRef(0);
 

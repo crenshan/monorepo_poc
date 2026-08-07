@@ -10,8 +10,9 @@
   "scripts": {
     "test": "vitest run",
     "token-css": "tsx scripts/generate-token-css.ts",
-    "tokens-json": "tsx scripts/generate-tokens-json.ts && prettier --write tokens.json",
-    "build": "npm run token-css && npm run tokens-json && tsc -b",
+    "tokens-json": "tsx scripts/generate-tokens-json.ts && prettier --write generated/tokens.json",
+    "components-json": "tsx scripts/generate-components-json.ts && prettier --write generated/components.json",
+    "build": "npm run token-css && npm run tokens-json && npm run components-json && tsc -b",
     "lint": "eslint .",
     "typecheck": "tsc -b --noEmit"
   },
@@ -30,6 +31,7 @@
     "jsdom": "^29.1.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "ts-morph": "^28.0.0",
     "tsx": "^4.20.6",
     "typescript": "~6.0.2",
     "vite": "^8.1.1",

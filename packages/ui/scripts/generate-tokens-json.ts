@@ -33,6 +33,6 @@ const manifest = {
   tokens: entries,
 };
 
-const outPath = join(dirname(fileURLToPath(import.meta.url)), '..', 'tokens.json');
+const outPath = join(dirname(fileURLToPath(import.meta.url)), '..', 'generated', 'tokens.json');
 writeFileSync(outPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
 console.log(`Wrote ${outPath} (${entries.length} tokens across ${groups.length} groups)`);

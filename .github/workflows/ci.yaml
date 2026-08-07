@@ -22,9 +22,10 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # packages/ui/src/tokens.css and packages/ui/tokens.json are generated from
-      # tokens.ts (see root AGENTS.md's Hard Boundaries). Regenerate and fail if
-      # that leaves a diff, so a stale commit of either can't merge.
+      # packages/ui/src/tokens.css and packages/ui/generated/{tokens,components}.json
+      # are generated from tokens.ts and component/hook source respectively (see root
+      # AGENTS.md's Hard Boundaries). Regenerate and fail if that leaves a diff, so a
+      # stale commit of any of them can't merge.
       - run: pnpm --filter ui build
       - run: git diff --exit-code
 

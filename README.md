@@ -32,11 +32,11 @@ pnpm dev          # starts the website dev server (Vite)
 
 ## Scripts (root)
 
-| Script          | What it does                                                                            |
-| --------------- | --------------------------------------------------------------------------------------- |
-| `pnpm dev`      | Runs `website`'s dev server                                                             |
-| `pnpm test:all` | Runs the test suite in every workspace package (`pnpm -r test`)                         |
-| `pnpm tokens`   | Regenerates `packages/ui/src/tokens.css` and `packages/ui/tokens.json` from `tokens.ts` |
+| Script          | What it does                                                                                                               |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm dev`      | Runs `website`'s dev server                                                                                                |
+| `pnpm test:all` | Runs the test suite in every workspace package (`pnpm -r test`)                                                            |
+| `pnpm tokens`   | Regenerates `packages/ui/src/tokens.css`, `packages/ui/generated/tokens.json`, and `packages/ui/generated/components.json` |
 
 Each package also has its own scripts — see its README for details, or run `pnpm --filter <name> <script>` from the root (e.g. `pnpm --filter ui test`).
 

@@ -38,12 +38,6 @@ export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement
  * placeholder option, and optional inline validation error. Reach for this when
  * a user must pick one value from a known, bounded list of options.
  *
- * Accessibility: the label is linked to the select with `htmlFor`/`id` (an id is
- * auto-generated via `useId` if none is passed), and when `error` is set the select
- * gets `aria-invalid="true"` plus `aria-describedby` pointing at the error message,
- * which is itself rendered with `role="alert"`. Keyboard interaction (opening,
- * arrow-key navigation, typeahead) is provided by the browser's native `<select>`.
- *
  * @category User Input
  *
  * @example
@@ -59,6 +53,13 @@ export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement
  *   onChange={(e) => setCountry(e.target.value)}
  * />
  * ```
+ *
+ * @remarks
+ * The label is linked to the select with `htmlFor`/`id` (an id is auto-generated via
+ * `useId` if none is passed), and when `error` is set the select gets
+ * `aria-invalid="true"` plus `aria-describedby` pointing at the error message, which is
+ * itself rendered with `role="alert"`. Keyboard interaction (opening, arrow-key
+ * navigation, typeahead) is provided by the browser's native `<select>`.
  */
 export function Select({
   label,

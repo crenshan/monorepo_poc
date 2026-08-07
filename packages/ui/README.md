@@ -38,13 +38,15 @@ Every component has a co-located `Component.module.css`. Components import it as
 
 ## Scripts
 
-| Script           | What it does                                      |
-| ---------------- | ------------------------------------------------- |
-| `pnpm dev`       | Vite dev server for this package in isolation     |
-| `pnpm test`      | Runs the Vitest suite (`vitest run`)              |
-| `pnpm token-css` | Regenerates `src/tokens.css` from `src/tokens.ts` |
-| `pnpm build`     | Regenerates tokens, typechecks, and builds        |
-| `pnpm lint`      | ESLint                                            |
+| Script                 | What it does                                                                                           |
+| ---------------------- | ------------------------------------------------------------------------------------------------------ |
+| `pnpm dev`             | Vite dev server for this package in isolation                                                          |
+| `pnpm test`            | Runs the Vitest suite (`vitest run`)                                                                   |
+| `pnpm token-css`       | Regenerates `src/tokens.css` from `src/tokens.ts`                                                      |
+| `pnpm tokens-json`     | Regenerates `generated/tokens.json` from `src/tokens.ts`                                               |
+| `pnpm components-json` | Regenerates `generated/components.json` from component/hook source                                     |
+| `pnpm build`           | Regenerates `tokens.css`, `generated/tokens.json`, `generated/components.json`, typechecks, and builds |
+| `pnpm lint`            | ESLint                                                                                                 |
 
 ## Testing
 
