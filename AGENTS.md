@@ -19,6 +19,10 @@ Proof of Concept illustrating the use of a monorepo for a central application as
 - New UI primitives go in `packages/ui`, never in `website/`.
 - Don't add dependencies without asking.
 
+## MCP Tools
+
+- `.mcp.json` configures MCP servers exposing tools, resources, and prompts for this repo (currently `ds`, which serves the `packages/ui` design system to agents — see `packages/ds-mcp`). Before defaulting to raw file reads/greps, check whether an available MCP tool, resource, or prompt already covers the task, and prefer it when it applies — this holds whether you're consuming `packages/ui` from `website/` or modifying `packages/ui` itself.
+
 ## Dev environment tips
 
 - Use `pnpm --filter website dev` to run the "website" app locally
