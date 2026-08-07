@@ -25,7 +25,5 @@ export interface ToastContextValue {
  * React context that carries the `toast()` function used to queue toast notifications.
  * Provided by `ToastProvider` and typically consumed via the `useToast()` hook rather
  * than read directly from this context.
- *
- * @category Feedback
  */
 export const ToastContext = createContext<ToastContextValue | null>(null);

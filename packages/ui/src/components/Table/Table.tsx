@@ -37,7 +37,7 @@ export interface TableProps extends TableHTMLAttributes<HTMLTableElement> {}
  * </Table>
  * ```
  */
-export function Table({ className, children, ...props }: TableHTMLAttributes<HTMLTableElement>) {
+export function Table({ className, children, ...props }: TableProps) {
   const classes = [styles['ds-table'], className].filter(Boolean).join(' ');
 
   return (

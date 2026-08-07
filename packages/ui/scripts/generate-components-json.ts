@@ -341,10 +341,15 @@ function collectCandidateTypes(
         ((m as LiteralTypeNode).getLiteral() as StringLiteral).getLiteralValue(),
       );
       const doc = alias.getJsDocs().at(-1);
+      if (!doc) {
+        throw new Error(
+          `${relative(PACKAGE_ROOT, sourceFile.getFilePath())}: exported type "${alias.getName()}" is missing a doc comment.`,
+        );
+      }
       candidates.push({
         name: alias.getName(),
         kind: 'union',
-        description: normalizeProse(doc?.getDescription() ?? ''),
+        description: normalizeProse(doc.getDescription()),
         values,
         fieldTypeTexts: [],
       });
@@ -357,6 +362,9 @@ function collectCandidateTypes(
 
       const context = `${relSourcePath}: exported type "${name}"`;
       const doc = iface.getJsDocs().at(-1);
+      if (!doc) {
+        throw new Error(`${context}: is missing a doc comment.`);
+      }
       const fields: FieldDefinition[] = iface.getProperties().map((prop) => {
         const typeNode = prop.getTypeNode();
         if (!typeNode) {
@@ -377,7 +385,7 @@ function collectCandidateTypes(
       candidates.push({
         name,
         kind: 'interface',
-        description: normalizeProse(doc?.getDescription() ?? ''),
+        description: normalizeProse(doc.getDescription()),
         fields,
         fieldTypeTexts: fields.map((f) => f.type),
       });
@@ -443,7 +451,7 @@ const sourceFiles = project
   .getSourceFiles()
   .filter((f) => {
     const rel = relative(COMPONENTS_DIR, f.getFilePath());
-    return !rel.startsWith('..') && !f.getFilePath().endsWith('.test.tsx');
+    return !rel.startsWith('..') && !/\.test\.tsx?$/.test(f.getFilePath());
   })
   .sort((a, b) => a.getFilePath().localeCompare(b.getFilePath()));
 
