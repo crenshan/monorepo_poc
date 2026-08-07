@@ -7,6 +7,7 @@
     "dev": "pnpm --filter website dev",
     "tokens": "pnpm --filter ui build",
     "mcp": "pnpm --filter ds-mcp dev",
+    "build": "pnpm -r --if-present build",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r exec eslint . --fix",
     "lint:css": "stylelint \"**/*.css\"",
