@@ -21,7 +21,7 @@ Proof of Concept illustrating the use of a monorepo for a central application as
 
 ## MCP Tools
 
-- `.mcp.json` configures MCP servers exposing tools, resources, and prompts for this repo (currently `ds`, which serves the `packages/ui` design system to agents — see `packages/ds-mcp`). Before defaulting to raw file reads/greps, check whether an available MCP tool, resource, or prompt already covers the task, and prefer it when it applies — this holds whether you're consuming `packages/ui` from `website/` or modifying `packages/ui` itself.
+- `.mcp.json` configures MCP servers exposing tools, resources, and prompts for this repo (currently `ds`, which serves the `packages/ui` design system to agents — see `packages/ds-mcp`). Before defaulting to raw file reads/greps, check whether an available MCP tool, resource, or prompt already covers the task, and prefer it when it applies. `packages/ui/AGENTS.md` requires this when modifying components; `website/AGENTS.md` intentionally opts out of it for view-authoring — see that file for why.
 
 ## Dev environment tips
 
